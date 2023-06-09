@@ -1,35 +1,33 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <Title>Login - Library System</Title>
-        <link rel="shortcut icon" href="/assert/img/icosmall.png"> 
-
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-        <link rel="stylesheet" href="assert/css/main.css">
-       
-    </head>
-    <body>
-        <div class="form">
-            <h2>Login</h2>
-            <form action="login.php" method="POST">
+<head>
+    <title>Login - Library System</title>
+    <link rel="shortcut icon" href="/assert/img/icosmall.png"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assert/css/main.css">
+</head>
+<body>
+    <div class="form">
+        <h2>Login</h2>
+        <form action="login.php" method="POST">
             <div class="input">
                 <div class="inputBox">
-                    <label for="">Username</label>
-                    <input type="text">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username">
                 </div>
                 <div class="inputBox">
-                    <label for="">Password</label>
-                    <input type="password">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
                 </div>
                 <div class="inputBox">
-                    <input type="submit" name="" value="Sign In"> 
+                    <input type="submit" name="submit" value="Sign In">
                 </div>
-            
             </div>
         </form>
-            <p class="forgot">Forgot Password? <a href="#">Click Here</a></p>
-            
-        </div>
-        
-    </body>
+        <?php if (isset($errorMessage)) { ?>
+            <p class="error"><?php echo $errorMessage; ?></p>
+        <?php } ?>
+        <p class="forgot">Forgot Password? <a href="#">Click Here</a></p>
+    </div>
+</body>
 </html>
