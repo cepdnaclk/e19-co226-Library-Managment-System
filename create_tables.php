@@ -75,6 +75,24 @@ $sql5 = "CREATE TABLE IF NOT EXISTS loantransaction (
     FOREIGN KEY (BookID) REFERENCES book (BookID),
     FOREIGN KEY (BorrowerID) REFERENCES borrower (BorrowerID)
 )";
+// Check if the Approved column exists in the loantransaction table
+$checkSql = "SHOW COLUMNS FROM loantransaction LIKE 'Approved'";
+$result = $conn->query($checkSql);
+
+if ($result->num_rows === 0) {
+    // Column does not exist, add it using ALTER TABLE
+    $alterSql = "ALTER TABLE loantransaction
+                 ADD COLUMN Approved BOOLEAN DEFAULT FALSE";
+
+    // Execute the SQL statement to add the Approved column
+    if ($conn->query($alterSql) === TRUE) {
+        echo "Table 'loantransaction' altered successfully (Added Approved column)<br>";
+    } else {
+        echo "Error altering table 'loantransaction': " . $conn->error;
+    }
+} else {
+    echo "Column 'Approved' already exists in table 'loantransaction'. No alteration needed.<br>";
+}
 
 // Execute the SQL statements
 if ($conn->query($sql1) === TRUE) {
