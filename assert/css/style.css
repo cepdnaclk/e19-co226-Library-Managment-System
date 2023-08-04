@@ -133,13 +133,15 @@ body{
 
 }
 
+
+
 .header{
     position: fixed;           /* header fixed in its position, so it stays at the top of the viewport even when the user scrolls down the page.*/
     top: 0;
     left: 0;
     width: 100%;
     padding: 20px 100px;
-    background-color: rgba(24, 21, 17, 0.5); ;
+    background-color: rgba(24, 21, 17, 0.7); ;
     display: flex;
     justify-content:  space-between;
     align-items: center;
