@@ -26,14 +26,19 @@
         $stmt->execute();
         $result = $stmt->get_result();
 
-        // Display search results
+       // Display search results in a table
         if ($result->num_rows > 0) {
             echo "<h3>Search Results:</h3>";
-            echo "<ul>";
+            echo "<table border='1'>";
+            echo "<tr><th>Title</th><th>Author</th><th>ISBN</th></tr>";
             while ($row = $result->fetch_assoc()) {
-                echo "<li>" . $row['Title'] . " by " . $row['Author'] . " (ISBN: " . $row['ISBN'] . ")</li>";
+                echo "<tr>";
+                echo "<td>" . $row['Title'] . "</td>";
+                echo "<td>" . $row['Author'] . "</td>";
+                echo "<td>" . $row['ISBN'] . "</td>";
+                echo "</tr>";
             }
-            echo "</ul>";
+            echo "</table>";
         } else {
             echo "<p>No results found.</p>";
         }
