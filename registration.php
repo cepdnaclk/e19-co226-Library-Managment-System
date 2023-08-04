@@ -13,6 +13,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Initialize error and success messages
+$errorMessage = '';
+$successMessage = '';
+
 // Check if the registration form was submitted
 if (isset($_POST['submit'])) {
     // Retrieve form data and sanitize/validate if necessary
@@ -47,7 +51,7 @@ if (isset($_POST['submit'])) {
         // Execute the SQL statement to insert borrower profile data into the borrowers table
         if ($stmt->execute()) {
             // Registration successful for both tables
-            $successMessage = "Registration successful. BorrowerID: " . $stmt->insert_id;
+            $successMessage = "Registration successful. BorrowerID: " . $memberID;
         } else {
             // Registration failed for borrowers table
             $errorMessage = "Error: Unable to register. Please try again.";

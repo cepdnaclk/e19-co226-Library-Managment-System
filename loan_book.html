@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Record Loan Transaction</title>
+</head>
+<body>
+    <h2>Record Loan Transaction</h2>
+    <form action="loan.php" method="POST">
+        <div>
+            <label for="book_id">Book ID:</label>
+            <input type="text" name="book_id" required>
+        </div>
+        <div>
+            <label for="borrower_id">Borrower ID:</label>
+            <input type="text" name="borrower_id" required>
+        </div>
+        <div>
+            <label for="loan_date">Loan Date:</label>
+            <input type="date" name="loan_date" required>
+        </div>
+        <div>
+            <label for="due_date">Due Date:</label>
+            <input type="date" name="due_date" required>
+        </div>
+        <div>
+            <input type="submit" name="submit" value="Record Loan">
+        </div>
+    </form>
+</body>
+</html>
