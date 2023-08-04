@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Return Book</title>
+</head>
+<body>
+    <h2>Return Book</h2>
+    <?php
+    if (isset($successMessage)) {
+        echo "<p>$successMessage</p>";
+    }
+    ?>
+    <form action="return_book.php" method="post">
+        <label for="loan_id">Loan ID:</label>
+        <input type="text" name="loan_id" required>
+        <input type="submit" name="return" value="Return">
+    </form>
+</body>
+</html>
