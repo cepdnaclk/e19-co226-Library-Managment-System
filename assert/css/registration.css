@@ -106,7 +106,7 @@ body, html, h2, form, div, label, input {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px 100px;
+    padding: 20px 10px;
     background-color: rgba(24, 21, 17, 0.7);
     display: flex;
     justify-content: space-between;
