@@ -5,7 +5,7 @@ body, html, h2, form, div, label, input {
   }
   
   body {
-    background-image: url(register-background.jpg);
+    background-image: url(../img/register-background.jpg);
     background-size: cover;
     background-position: center;
     display: flex;
