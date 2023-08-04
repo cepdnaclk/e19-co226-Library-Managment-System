@@ -1,9 +1,9 @@
 <?php
 // Database connection credentials
-$host = 'localhost';
-$dbUsername = 'root';
-$dbPassword = '';
-$dbName = 'library_management_system';
+$host = 'sql.freedb.tech';
+$dbUsername = 'freedb_rootdasun';
+$dbPassword = 'AR@yskMB5Ad6B7Z';
+$dbName = 'freedb_co226123';
 
 // Establish a database connection
 $conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
