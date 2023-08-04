@@ -153,6 +153,10 @@ body{
     font-weight: 700;
 }
 
+.logo img{
+    width: 40px;
+}
+
 .navbar a{                  /*: This applies styles to anchor tags (<a>) within the navigation bar.*/
     position: relative;;
     font-size: 18px;
