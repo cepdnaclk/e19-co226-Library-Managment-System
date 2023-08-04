@@ -260,3 +260,102 @@ hr{
     width: 50px;
     height: 50px;
 }
+
+
+
+
+body {
+    background-image: url(../img/register-background.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack elements vertically */
+    height: 100vh;
+  }
+  
+  h2 {
+    color: #ffffff;
+    font-size: 24px; /* Increase the font size */
+    text-transform: uppercase; /* Convert the text to uppercase */
+    letter-spacing: 2px; /* Add letter spacing */
+    text-shadow: 2px 2px 4px rgba(200, 75, 75, 0.9); /* Add a text shadow for a subtle effect */
+    margin-bottom: 10px;
+    text-align: center;
+    margin-top: 300px;
+  }
+  
+
+  form {
+    background-color: rgba(218, 222, 211, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
+    padding: 50px;
+    max-width: 500px;
+    width: 100%;
+    margin-bottom: 100px; /* Increase the top margin to move the form down */
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+  }
+  
+  
+  div {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    color: #f6f3f3;
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: 600 ; /* Make the label text bolder */
+    /* Add more styles to the label */
+    text-transform: uppercase; /* Convert label text to uppercase */
+    border-bottom: 1px solid #a7d359; /* Add a bottom border to the label */
+    padding-bottom: 3px; /* Add some space between the text and the border */
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+    background-color:  rgba(255, 255, 255, 0.5); /* Set the background color of the input boxes to transparent */
+  }
+
+
+  input:focus {
+    border-color: #007bff;
+  }
+  
+  input[type="submit"] {
+    background-color: #007bff;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Optional: Add some additional styling for form validation messages */
+  input:invalid {
+    border-color: #dc3545;
+  }
+  
+  input:invalid:focus {
+    border-color: #dc3545;
+  }
+  
+  input:valid {
+    border-color: #28a745;
+  }
+  
+  input:valid:focus {
+    border-color: #28a745;
+  }
+  
