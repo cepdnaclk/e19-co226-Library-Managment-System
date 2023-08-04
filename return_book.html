@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Overview - Engineering Library</title>
+    <title>Return Books - Engineering Library</title>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +26,7 @@
             <a href="/">Home</a>
             <a href="search.html">Books</a>
             <a href="#">Services</a>
-            <a href="#">Contact</a>
+            <a href="about.html">Contact</a>
             <a href="#">Account Settings</a>
             <a href="logout.php">Log out</a>
         </nav>
@@ -34,16 +34,15 @@
 
     <div class="overview">
 
-        <h1>Return Book</h1>
+        <h1>Return Books</h1>
         <hr>
         <!-- <?php
         if (isset($successMessage)) {
             echo "<p>$successMessage</p>";
         }
         ?> -->
-        <form action="return_book.php" method="post">
-            <label for="loan_id">Loan ID:</label>
-            <input type="text" name="loan_id" required>
+        <form action="return_book.php" method="post" class="search-bar">
+            <input type="text" name="loan_id" placeholder="User ID" required>
             <input type="submit" name="return" value="Return">
         </form>
     </div>

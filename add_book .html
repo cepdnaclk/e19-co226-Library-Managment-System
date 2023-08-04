@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Overview - Engineering Library</title>
+    <title>Add Transaction- Engineering Library</title>
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +26,7 @@
             <a href="/">Home</a>
             <a href="search.html">Books</a>
             <a href="#">Services</a>
-            <a href="about.html">Contact</a>
+            <a href="#">Contact</a>
             <a href="#">Account Settings</a>
             <a href="logout.php">Log out</a>
         </nav>
@@ -34,13 +34,31 @@
 
     <div class="overview">
 
-        <h1>Find a Book</h1>
+        <h1>Add a Book</h1>
         <hr>
-        <form action="search_books.php" method="GET" class="search-bar">
-            <!-- <label for="search_query">Search by Title or Author:</label> -->
-           <input type="text" name="search_query" id="search_query" placeholder="Search by Title or Author" required>
-           <input type="submit" name="submit" value="Search">
-       </form>
+        <form action="loan.php" method="POST" class="return add-book">
+            <div class="loan">
+                <input type="text" name="book_title" placeholder="Title" required>
+            </div>
+            <div class="loan">
+                <input type="text" name="book_isbn" placeholder="ISBN" required>
+            </div>
+            <div class="loan">
+                <input type="text" name="book_author" placeholder="Author" required>
+            </div>
+            <div class="loan">
+                <input type="text" name="book_publisher" placeholder="Publisher" required>
+            </div>
+            <div class="loan">
+                <input type="text" name="book_publicationyear" placeholder="Publication Year" required>
+            </div>
+            <div class="loan">
+                <input type="text" name="book_language" placeholder="Language" required>
+            </div>
+            <div class="loan-btn">
+                <input type="submit" name="submit" value="Record Loan">
+            </div>
+        </form>
     </div>
 
     <footer class="footer">                               <!--<footer> element, which is typically used to contain information about
