@@ -35,7 +35,7 @@ if (isset($_POST['submit'])) {
         if ($role == "staff"){
             header("Location: libraryhome.html");
         }else{
-            header("Location: home.html");
+            header("Location: home.php");
         }
         exit();
     } else {
