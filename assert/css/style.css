@@ -297,6 +297,9 @@ hr{
 }
 
 .loan-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 80%;
   max-width: 700px;
   background: rgba(57, 47, 247, 0.604);
@@ -304,7 +307,8 @@ hr{
   border-color: rgba(129, 96, 221);
   padding: 5px;
   margin-bottom: 10px;
-  margin: 0 10%;
+  margin: 0 auto; /* Center the button horizontally */
+  text-align: center; /* Center the button text horizontally */
 }
 
 .registration {
@@ -401,3 +405,28 @@ hr{
 .reg input:valid:focus {
   border-color: #28a745;
 }
+
+.formtext {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin-top: 20px; 
+  justify-content: center;
+}
+
+.formtext p {
+  font-size: 14px;
+  color: #777;
+  margin-right: 10px;
+}
+
+.formtext a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.formtext a:hover {
+  color: #0056b3;
+}
+
