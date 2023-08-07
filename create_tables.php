@@ -127,6 +127,17 @@ if ($result->num_rows === 0) {
     echo "Column 'Approved' already exists in table 'loantransaction'. No alteration needed.<br>";
 }
 
+// SQL queries to insert staff members into the members table
+$query1 = "INSERT INTO members (username, password, role) VALUES ('staff1', 'password1', 'staff')";
+$query2 = "INSERT INTO members (username, password, role) VALUES ('staff2', 'password2', 'staff')";
+
+// Execute the queries
+if ($conn->query($query1) && $conn->query($query2)) {
+    echo "Staff members inserted successfully.";
+} else {
+    echo "Error: " . $conn->error;
+}
+
 // Close the connection
 $conn->close();
 ?>
