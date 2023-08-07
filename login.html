@@ -9,6 +9,9 @@
 <body>
     <div class="form">
         <h2>Login</h2>
+        <?php if (!empty($errorMessage)) { ?>
+            <p class="error"><?php echo $errorMessage; ?></p>
+        <?php } ?>
         <form action="login.php" method="POST">
             <div class="input">
                 <div class="inputBox">
@@ -24,9 +27,7 @@
                 </div>
             </div>
         </form>
-        <?php if (isset($errorMessage)) { ?>
-            <p class="error"><?php echo $errorMessage; ?></p>
-        <?php } ?>
+         
         <p class="forgot">Forgot Password? <a href="#">Click Here</a></p>
     </div>
 </body>

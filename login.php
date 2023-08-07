@@ -11,6 +11,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Initialize the error message
+$errorMessage = "";
+
 // Check if the form was submitted
 if (isset($_POST['submit'])) {
     // Retrieve the input values
@@ -31,17 +34,16 @@ if (isset($_POST['submit'])) {
 
     if (password_verify($password, $hashedPassword)) {
         $_SESSION['user_id'] = $username;
-        // Login successful, redirect to welcome.php
-        if ($role == "staff"){
+        // Login successful, redirect to appropriate page
+        if ($role == "staff") {
             header("Location: libraryhome.html");
-        }else{
+        } else {
             header("Location: home.html");
         }
         exit();
     } else {
-        // Invalid username or password, display an error message or redirect back to the login page
+        // Invalid username or password, set the error message
         $errorMessage = "Incorrect username or password.";
-        header("Location: login.html");
     }
 }
 ?>
