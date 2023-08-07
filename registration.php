@@ -27,16 +27,17 @@ if (isset($_POST['submit'])) {
     $address = $_POST['address'];
     $phoneNumber = $_POST['phone_number'];
     $email = $_POST['email'];
+    $role = 'borrower'; // Set the role as "borrower"
 
     // Hash the password before storing in the database
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-    // Prepare the SQL statement to insert username and password into the members table
-    $sql = "INSERT INTO members (username, password) VALUES (?, ?)";
+    // Prepare the SQL statement to insert username, password, and role into the members table
+    $sql = "INSERT INTO members (username, password, role) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ss", $username, $hashedPassword);
+    $stmt->bind_param("sss", $username, $hashedPassword, $role);
 
-    // Execute the SQL statement to insert username and password into the members table
+    // Execute the SQL statement to insert username, password, and role into the members table
     if ($stmt->execute()) {
         // Registration successful for the members table, now insert the borrower profile data
         $memberID = $stmt->insert_id;
