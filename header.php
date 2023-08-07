@@ -22,8 +22,8 @@
 
             <nav class="navbar">          
                 <a href="home.php">Home</a>
-                <a href="search.html">Books</a>
-                <a href="about.html">Contact</a>
+                <a href="search.php">Books</a>
+                <a href="about.php">Contact</a>
 
                 <?php
                 // Start the session to work with session data
@@ -35,7 +35,7 @@
                     echo '<a href="logout.php">Log-out</a>';
                 } else {
                     // Display this link if the user is logged in
-                    echo '<a href="logout.php">Log-in</a>';
+                    echo '<a href="login.html">Log-in</a>';
                 }
                 ?>
             </nav>
