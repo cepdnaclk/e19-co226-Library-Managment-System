@@ -21,18 +21,22 @@ if (isset($_POST['submit'])) {
         die("Database selection failed: " . $conn->error);
     }
 
-    $query = "SELECT Username, Password FROM members WHERE Username = ?";
+    $query = "SELECT Username, Password, Role FROM members WHERE Username = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $stmt->bind_result($userId, $hashedPassword);
+    $stmt->bind_result($userId, $hashedPassword, $role);
     $stmt->fetch();
     $stmt->close();
 
     if (password_verify($password, $hashedPassword)) {
         $_SESSION['user_id'] = $username;
         // Login successful, redirect to welcome.php
-        header("Location: home.html");
+        if ($role == "staff"){
+            header("Location: libraryhome.html");
+        }else{
+            header("Location: home.html");
+        }
         exit();
     } else {
         // Invalid username or password, display an error message or redirect back to the login page

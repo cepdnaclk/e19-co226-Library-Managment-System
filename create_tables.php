@@ -27,7 +27,8 @@ $conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
 $sql1 = "CREATE TABLE IF NOT EXISTS members (
     MemberID INT AUTO_INCREMENT PRIMARY KEY,
     Username VARCHAR(50) NOT NULL,
-    Password VARCHAR(255) NOT NULL
+    Password VARCHAR(255) NOT NULL,
+    Role VARCHAR(50) NOT NULL
 )";
 
 $sql2 = "CREATE TABLE IF NOT EXISTS borrower (
