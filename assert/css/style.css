@@ -211,11 +211,55 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center; 
-    bottom: 10cm;
-    left: 30%;
+    top: 1.5cm;
+  
     
 }
+.overviews{
+  color: aliceblue;
+  position: relative;
+  text-align: center; 
+  padding: 60px;
+  margin: 50px;
+  margin-top: -10px;
+  background-color: rgba(34, 32, 30, 0.815); 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  top: 1.5cm;
 
+  
+}
+
+.overview_return{
+  color: aliceblue;
+  position: relative;
+  text-align: center; 
+  padding: 60px;
+  margin: 50px;
+  margin-top: -10px;
+  background-color: rgba(34, 32, 30, 0.815); 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+
+}
+.overview_search{
+  color: aliceblue;
+  position: relative;
+  text-align: center; 
+  padding: 60px;
+  margin: 50px;
+  margin-top: -10px;
+  background-color: rgba(34, 32, 30, 0.815); 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  bottom: 7cm;
+  left: 13cm;
+
+  
+}
 hr{
     width: 80%;
     margin: 20px;
@@ -318,7 +362,9 @@ hr{
   justify-content: center;
   align-items: center;
   flex-direction: column; /* Stack elements vertically */
-  height: 100vh;
+  height: 120vh;
+  position: relative;
+ bottom : 1.5cm;
 }
   
 .registration  h2 {
@@ -330,6 +376,7 @@ hr{
   margin-bottom: 10px;
   text-align: center;
   margin-top: 300px;
+
 }
   
 
@@ -415,7 +462,7 @@ hr{
   flex-wrap: wrap;
   margin-top: 5px; /* Add a margin to create space above the section */
   position: relative;
-  top: 9cm;
+  top: 13cm;
   width: 50cm;
   right: 7cm;
 
@@ -445,6 +492,7 @@ hr{
   color: #f6f3f3;
   font-family: "Times New Roman", Times, serif;
 }
+
 
 .car-1{
        background-image:url('../img/twilight.jpg')    
