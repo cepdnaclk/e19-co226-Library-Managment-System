@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
     $role = 'borrower'; // Set the role as "borrower"
 
     if ($password != $repassword){
-        $errorMessage = "Error: Unable to register. Please try again.";
+        $errorMessage = "Password must be match";
         header("Location: register.php");
     }else{
 
