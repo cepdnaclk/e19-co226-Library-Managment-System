@@ -63,11 +63,8 @@ if (isset($_POST['submit'])) {
         // Login successful, redirect to appropriate page
         echo "User ID: " . $_SESSION['user_id'] . "<br>";
     echo "Role: " . $role . "<br>";
-        if ($role == "staff") {
-            header("Location: libraryhome.html");
-        } else {
-            header("Location: home.html");
-        }
+        header("Location: index.php");
+      
         exit();
     } else {
         // Invalid username or password, set the error message

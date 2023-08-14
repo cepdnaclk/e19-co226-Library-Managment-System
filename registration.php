@@ -46,10 +46,13 @@ if (isset($_POST['submit'])) {
             $stmt->close();
 
             // Prepare the SQL statement to insert borrower profile data into the borrowers table
-            $sql = "INSERT INTO borrower (BorrowerID,UserName, FirstName, LastName, Address, PhoneNumber, Email) 
-                    VALUES (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO borrower (BorrowerID, UserName, FirstName, LastName, Address, PhoneNumber, Email) VALUES (?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("isssss", $memberID,$username, $firstName, $lastName, $address, $phoneNumber, $email);
+            if (!$stmt) {
+                die("Error in preparing statement: " . $conn->error);
+            }
+            
+            $stmt->bind_param("issssss", $memberID, $username, $firstName, $lastName, $address, $phoneNumber, $email);
 
             // Execute the SQL statement to insert borrower profile data into the borrowers table
             if ($stmt->execute()) {

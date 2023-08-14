@@ -41,7 +41,7 @@ if (isset($_POST['submit'])) {
     } else {
         // Invalid username or password, display an error message or redirect back to the login page
         $errorMessage = "Incorrect username or password.";
-        header("Location: login.html");
+        header("Location: login.php");
     }
 }
 ?>
