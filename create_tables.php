@@ -34,6 +34,7 @@ $sql1 = "CREATE TABLE IF NOT EXISTS members (
 
 $sql2 = "CREATE TABLE IF NOT EXISTS borrower (
     BorrowerID INT PRIMARY KEY,
+    UserName VARCHAR(50) NOT NULL,
     FirstName VARCHAR(50) NOT NULL,
     LastName VARCHAR(50) NOT NULL,
     Address VARCHAR(255) NOT NULL,
