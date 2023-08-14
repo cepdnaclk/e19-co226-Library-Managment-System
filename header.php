@@ -35,7 +35,7 @@
                     echo '<a href="logout.php">Log-out</a>';
                 } else {
                     // Display this link if the user is logged in
-                    echo '<a href="login.html">Log-in</a>';
+                    echo '<a href="login.php">Log-in</a>';
                 }
                 ?>
             </nav>
