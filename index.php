@@ -5,7 +5,7 @@ if (isset($_SESSION['user_id'])) {
     if ($_SESSION['roleid'] == 'staff') {
         header("Location: libraryhome.html");
     } else {
-        header("Location: login.html");
+        header("Location: home.php");
     }
     exit();
 }

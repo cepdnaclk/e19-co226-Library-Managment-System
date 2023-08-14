@@ -1,5 +1,5 @@
 <?php
-    $pageTitle = "Add Transaction- Engineering Library";
+    $pageTitle = "Login- Engineering Library";
     include 'header.php';
 ?>
 
@@ -23,6 +23,15 @@
     </form>
 </div>
 
+<?php
+    include 'footer.php';
+?>
+
+<?php
+require_once 'db.php';
+
+// Establish a database connection
+$conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
 // Check if the connection was successful
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

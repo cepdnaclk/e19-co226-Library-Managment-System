@@ -24,6 +24,7 @@
                 <a href="home.php">Home</a>
                 <a href="search.php">Books</a>
                 <a href="about.php">Contact</a>
+                <a href="view_account.php">Account Details</a>
 
                 <?php
                 // Start the session to work with session data

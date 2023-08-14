@@ -460,7 +460,6 @@ hr{
   border-color: #28a745;
 }
 
-<<<<<<< HEAD
 .formtext {
   text-align: center;
   display: flex;
@@ -483,9 +482,8 @@ hr{
 
 .formtext a:hover {
   color: #0056b3;
-=======
 /* moviecards */
-
+}
 
 .containercards{
   display: flex;
@@ -570,6 +568,4 @@ hr{
    transform: scale(1.03);
    transition: all 1s ease;
 
->>>>>>> 1d362e9a59a2099de70b0182a66c76ae91676e89
 }
-
