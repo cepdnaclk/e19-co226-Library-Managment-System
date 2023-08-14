@@ -11,7 +11,7 @@
              <div class="text">
                 <h3>All Books</h3>
                 <p>Continue your journey...</p>
-                <a href="search.html">Read More</a>
+                <a href="search.php">Read More</a>
              </div>
         </div>   
     </div>

@@ -13,7 +13,6 @@
         <input type="submit" name="submit" value="Search">
     </form>
 
-
     <section class="containercards">
 
         <div class="card"> 
