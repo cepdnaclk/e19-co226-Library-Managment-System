@@ -11,70 +11,58 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Initialize error and success messages
+$errorMessage = '';
+$successMessage = '';
+
 // Check if the form was submitted
 if (isset($_POST['submit'])) {
     // Retrieve the input values
     $username = $_POST['username'];
     $email = $_POST['email'];
+    $newPassword = $_POST['new_password'];
 
     if ($conn->select_db($dbName) === false) {
         die("Database selection failed: " . $conn->error);
     }
 
     // Prepare and execute a query to check if username and email match
-    $query = "SELECT MemberID FROM members WHERE Username = ? AND Email = ?";
+    $query = "SELECT members.MemberID, borrower.Email FROM members
+              JOIN borrower ON members.MemberID = borrower.BorrowerID
+              WHERE members.Username = ? AND borrower.Email = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ss", $username, $email);
     $stmt->execute();
-    $stmt->bind_result($memberID);
+    $stmt->bind_result($memberID, $borrowerEmail);
     $stmt->fetch();
     $stmt->close();
 
     if ($memberID) {
-        // Username and email match, allow password reset
-        // Display a form for the user to enter a new password
-        ?>
-<!DOCTYPE html>
-<html>
+        // Username and email match, update the password
+        // Hash the new password before updating in the database
+        $hashedPassword = password_hash($newPassword, PASSWORD_BCRYPT);
 
-    <head>
-        <title>Reset Password - Library System</title>
-        <link rel="shortcut icon" href="/assert/img/icosmall.png">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="assert/css/main.css">
-    </head>
+        // Prepare and execute a query to update the password
+        $updateQuery = "UPDATE members SET Password = ? WHERE MemberID = ?";
+        $updateStmt = $conn->prepare($updateQuery);
+        $updateStmt->bind_param("si", $hashedPassword, $memberID);
 
-    <body>
-        <div class="form">
-            <h2>Reset Password</h2>
-            <form action="update_password.php" method="POST">
-                <div class="input">
-                    <div class="inputBox">
-                        <label for="new_password">New Password</label>
-                        <input type="password" name="new_password" id="new_password" required>
-                    </div>
-                    <div class="inputBox">
-                        <label for="confirm_password">Confirm Password</label>
-                        <input type="password" name="confirm_password" id="confirm_password" required>
-                    </div>
-                    <div class="inputBox">
-                        <input type="hidden" name="member_id" value="<?php echo $memberID; ?>">
-                        <input type="submit" name="submit" value="Reset Password">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </body>
+        if ($updateStmt->execute()) {
+            // Password update successful, display success message
+            $successMessage = "Password updated successfully.";
+        } else {
+            // Password update failed, display error message
+            $errorMessage = "Error updating password. Please try again.";
+        }
 
-</html>
-<?php
+        $updateStmt->close();
     } else {
         // Invalid username or email, display an error message
         $errorMessage = "Username and email do not match.";
-        header("Location: forgot_password.html");
-        exit();
     }
 }
 
 $conn->close();
+header("Location: login.html");
+        exit();
 ?>
