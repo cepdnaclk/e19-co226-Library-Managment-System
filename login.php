@@ -24,17 +24,19 @@ if (isset($_POST['submit'])) {
         die("Database selection failed: " . $conn->error);
     }
 
-    $query = "SELECT Username, Password, Role FROM members WHERE Username = ?";
+    $query = "SELECT MemberID, Username, Password, Role FROM members WHERE Username = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $username);
     $stmt->execute();
-    $stmt->bind_result($userId, $hashedPassword, $role);
+    $stmt->bind_result($memberID, $username, $hashedPassword, $role);
     $stmt->fetch();
     $stmt->close();
 
     if (password_verify($password, $hashedPassword)) {
-        $_SESSION['user_id'] = $username;
+        $_SESSION['user_id'] = $memberID; // Store the MemberID in the session
         // Login successful, redirect to appropriate page
+        echo "User ID: " . $_SESSION['user_id'] . "<br>";
+    echo "Role: " . $role . "<br>";
         if ($role == "staff") {
             header("Location: libraryhome.html");
         } else {
