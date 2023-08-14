@@ -126,8 +126,12 @@ if ($result->num_rows === 0) {
 }
 
 // SQL queries to insert staff members into the members table
-$query1 = "INSERT INTO members (username, password, role) VALUES ('staff1', 'password1', 'staff')";
-$query2 = "INSERT INTO members (username, password, role) VALUES ('staff2', 'password2', 'staff')";
+$hashedPassword1 = password_hash('password1', PASSWORD_BCRYPT);
+$hashedPassword2 = password_hash('password2', PASSWORD_BCRYPT);
+
+$query1 = "INSERT INTO members (username, password, role) VALUES ('staff1', '$hashedPassword1', 'staff')";
+$query2 = "INSERT INTO members (username, password, role) VALUES ('staff2', '$hashedPassword2', 'staff')";
+
 
 // Execute the queries
 if ($conn->query($query1) && $conn->query($query2)) {
