@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Return Books - Engineering Library</title>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d74e43ef35.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="/assert/img/icosmall.png"> 
+    <link rel="stylesheet" href="assert/css/style.css">
+</head>
+<body>
+    
+ <!--Ion icons js link -->
+ <script src="https://unpkg.com/ionicons@latest/dist/ionicons.js"></script>
+
+    <header class="header">         <!-- This is the header section of the web page. It typically contains elements
+        like the website's logo, navigation menu, and other important information that 
+    should be displayed at the top of the page.-->
+        <a href="#" class="logo">
+            <img src="assert/img/icosmall.png">
+        </a>     <!--# is a  placeholder for url -->
+
+        <nav class="navbar">          <!--The nav tag is used to define a block of navigation links.-->.
+            <a href="/">Home</a>
+            <a href="search.html">Books</a>
+            <a href="#">Services</a>
+            <a href="about.html">Contact</a>
+            <a href="#">Account Settings</a>
+            <a href="logout.php">Log out</a>
+        </nav>
+    </header>
+
+    <div class="overview_return">
+
+        <h1>Return Books</h1>
+        <hr>
+        <!-- <?php
+        if (isset($successMessage)) {
+            echo "<p>$successMessage</p>";
+        }
+        ?> -->
+        <form action="return_book.php" method="post" class="search-bar">
+            <input type="text" name="loan_id" placeholder="User ID" required>
+            <input type="submit" name="return" value="Return">
+        </form>
+    </div>
+
+    <footer class="footer">                               <!--<footer> element, which is typically used to contain information about
+                                                            the website or web page that is placed at the bottom of the page. -->
+        <p>&copy; 2023 CO226_PROJECT. All rights reserved.</p> 
+    </footer>
+
+
+
+
+</body>
+</html>

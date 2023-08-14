@@ -62,4 +62,6 @@ if (isset($_POST['submit'])) {
 }
 
 $conn->close();
+header("Location: login.html");
+        exit();
 ?>

@@ -1,7 +1,7 @@
 <?php
 // Database connection credentials
 $host = 'sql.freedb.tech';
-$dbUsername = 'freedb_rootdasun';
-$dbPassword = 'MAt7D$XpSEyx5$Z';
-$dbName = 'freedb_co226123';
+$dbUsername = 'freedb_226_project';
+$dbPassword = 'zzug5BPPttknv?M';
+$dbName = 'freedb_freedb_226';
 ?>

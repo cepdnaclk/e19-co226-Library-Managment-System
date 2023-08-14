@@ -187,32 +187,83 @@ body{
 
 
 .footer {
-    position: absolute;
-    left: 0;
-    bottom: -200px;
-    width: 100%;
-    text-align: center;
-    background-color: rgba(236, 225, 225, 0.15); /* Setting the background to half-transparent */
-    padding: 10px;
-    color: #040404;
-    font-weight: 700;
-    font-size: 14px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: rgba(236, 225, 225, 0.15); /* Setting the background to half-transparent */
+  padding: 10px;
+  color: #040404;
+  font-weight: 700;
+  font-size: 14px;
 }
+
 
 .overview{
     color: aliceblue;
     position: relative;
     text-align: center; 
-    padding: 60px;
-    margin: 50px;
-    margin-top: 80px;
+    padding: 30px;
+    margin: 40px;
+    margin-top: -10px;
     background-color: rgba(34, 32, 30, 0.815); 
     display: flex;
     flex-direction: column;
     align-items: center; 
+    top: 1cm;
     
 }
+.about_body{
+  position: relative;
+   height: 23cm;
 
+}
+.overviews{
+  color: aliceblue;
+  position: relative;
+  text-align: center; 
+  padding: 60px;
+  margin: 50px;
+  margin-top: -10px;
+  background-color: rgba(34, 32, 30, 0.815); 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  top: 1.5cm;
+
+  
+}
+
+.overview_return{
+  color: aliceblue;
+  position: relative;
+  text-align: center; 
+  padding: 60px;
+  margin: 50px;
+  margin-top: -10px;
+  background-color: rgba(34, 32, 30, 0.815); 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+
+}
+.overview_search{
+  color: aliceblue;
+  position: relative;
+  text-align: center; 
+  padding: 60px;
+  margin: 50px;
+  margin-top: -10px;
+  background-color: rgba(34, 32, 30, 0.815); 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  bottom: 7cm;
+  left: 13cm;
+
+  
+}
 hr{
     width: 80%;
     margin: 20px;
@@ -319,7 +370,9 @@ hr{
   justify-content: center;
   align-items: center;
   flex-direction: column; /* Stack elements vertically */
-  height: 100vh;
+  height: 120vh;
+  position: relative;
+ bottom : 1.5cm;
 }
   
 .registration  h2 {
@@ -331,11 +384,12 @@ hr{
   margin-bottom: 10px;
   text-align: center;
   margin-top: 300px;
+
 }
   
 
 .reg {
-    background-color: rgba(218, 222, 211, 0.2);
+    background-color:rgba(34, 32, 30, 0.815);
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 1);
     padding: 50px;
@@ -370,7 +424,7 @@ hr{
   border: 1px solid #cccccc;
   border-radius: 4px;
   transition: border-color 0.3s ease;
-  background-color:  rgba(255, 255, 255, 0.5); /* Set the background color of the input boxes to transparent */
+  background-color:  rgba(220, 199, 185, 0.3); /* Set the background color of the input boxes to transparent */
 }
 
 
@@ -406,6 +460,7 @@ hr{
   border-color: #28a745;
 }
 
+<<<<<<< HEAD
 .formtext {
   text-align: center;
   display: flex;
@@ -428,5 +483,93 @@ hr{
 
 .formtext a:hover {
   color: #0056b3;
+=======
+/* moviecards */
+
+
+.containercards{
+  display: flex;
+  justify-content: center;
+  background-color:  rgba(34, 32, 30, 0.5);
+  flex-wrap: wrap;
+  margin-top: 5px; /* Add a margin to create space above the section */
+  position: relative;
+  top: 13cm;
+  width: 50cm;
+  right: 7cm;
+
+}
+
+.card{
+  background:rgba(220, 199, 185, 0.4);
+  width:200px;
+  margin: 10px;
+  border-radius: 15px ;
+}
+
+
+.moviepara{
+    text-align: center;
+    font: bolder;
+   
+}
+.card-image{
+     height: 290px;
+     margin-bottom: 15px;
+     background-size: cover;
+     border-radius: 15px 15px 0 0;
+}
+.movietitle{
+  text-align: center;
+  color: #f6f3f3;
+  font-family: "Times New Roman", Times, serif;
+}
+
+
+.car-1{
+       background-image:url('../img/twilight.jpg')    
+      } 
+.car-2{
+        background-image:url('../img/harrypotter.jpeg')    
+       } 
+       .car-3{
+        background-image:url('../img/hobbit.jpeg')    
+       } 
+       .car-4{
+        background-image: url('../img/adventuers.jpeg');
+       } 
+       .car-5{
+        background-image:url('../img/heros.jpeg')
+       } 
+       .car-6{
+        background-image:url('../img/hungergames.jpeg')
+       } 
+       .car-7{
+        background-image:url('../img/percyjackson.jpeg')
+       } 
+       .car-8{
+        background-image:url('../img/mother.jpg')
+       } 
+
+.card p {
+  padding: 10px;
+
+}
+.card a{
+  background-color: black;
+ color: white;
+ padding: 15px 10px;
+ display: block;
+ text-align: center;
+}
+
+.card:hover{
+   background-color:grey ;
+   color: white;
+   cursor: pointer;
+   transform: scale(1.03);
+   transition: all 1s ease;
+
+>>>>>>> 1d362e9a59a2099de70b0182a66c76ae91676e89
 }
 
