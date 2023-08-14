@@ -135,22 +135,6 @@ if ($conn->query($query1) && $conn->query($query2)) {
 } else {
     echo "Error: " . $conn->error;
 }
-
-$query_books = "INSERT INTO book (BookID, Title, ISBN, Publisher, PublicationYear, Language, Genre, Availability, Author)
-VALUES
-    (1, 'Twilight saga', '9780316015844', 'Little, Brown and Company', 2005, 'English', 'Fantasy', 1, 1),
-    (2, 'Harry Potter and the Half-Blood Prince', '9780439784542', 'Scholastic', 2005, 'English', 'Fantasy', 1, 2),
-    (3, 'The Hobbit', '9780547928227', 'Mariner Books', 1937, 'English', 'Fantasy', 1, 3),
-    (4, 'The Adventures of Huckleberry Finn', '9780486280615', 'Dover Publications', 1884, 'English', 'Adventure', 1, 4),
-    (5, 'Heroes of Olympus: The Lost Hero', '9781423113393', 'Disney-Hyperion', 2010, 'English', 'Fantasy', 1, 5),
-    (6, 'The Hunger Games', '9780439023528', 'Scholastic', 2008, 'English', 'Dystopian', 1, 6),
-    (7, 'Percy Jackson and the Titan\'s Curse', '9781423101451', 'Disney-Hyperion', 2007, 'English', 'Fantasy', 1, 5),
-    (8, 'Mother', '9780140183526', 'Penguin Classics', 1907, 'Russian', 'Drama', 1, 7)";
-if ($conn->query($query_books) === TRUE) {
-    echo "Books added to database<br>";
-} else {
-    echo "Error in adding books" . $conn->error;
-}
 $query_authors = "INSERT INTO author (AuthorID, FirstName, LastName, DateOfBirth, Nationality)
 VALUES
     (1, 'Stephenie', 'Meyer', '1973-12-24', 'American'),
@@ -166,6 +150,22 @@ if ($conn->query($query_authors) === TRUE) {
 } else {
     echo "Error in adding authors: " . $conn->error;
 }
+$query_books = "INSERT INTO book (BookID, Title, ISBN, Publisher, PublicationYear, Language, Genre, Availability, Author)
+VALUES
+    (1, 'Twilight saga', '9780316015844', 'Little, Brown and Company', 2005, 'English', 'Fantasy', 1, 1),
+    (2, 'Harry Potter and the Half-Blood Prince', '9780439784542', 'Scholastic', 2005, 'English', 'Fantasy', 1, 2),
+    (3, 'The Hobbit', '9780547928227', 'Mariner Books', 1937, 'English', 'Fantasy', 1, 3),
+    (4, 'The Adventures of Huckleberry Finn', '9780486280615', 'Dover Publications', 1884, 'English', 'Adventure', 1, 4),
+    (5, 'Heroes of Olympus: The Lost Hero', '9781423113393', 'Disney-Hyperion', 2010, 'English', 'Fantasy', 1, 5),
+    (6, 'The Hunger Games', '9780439023528', 'Scholastic', 2008, 'English', 'Dystopian', 1, 6),
+    (7, 'Percy Jackson and the Titan\'s Curse', '9781423101451', 'Disney-Hyperion', 2007, 'English', 'Fantasy', 1, 5),
+    (8, 'Mother', '9780140183526', 'Penguin Classics', 1907, 'Russian', 'Drama', 1, 7)";
+if ($conn->query($query_books) === TRUE) {
+    echo "Books added to database<br>";
+} else {
+    echo "Error in adding books" . $conn->error;
+}
+
 
 
 // Close the connection
