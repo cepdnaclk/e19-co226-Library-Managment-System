@@ -9,57 +9,46 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the returned_books table exists
-$tableExistsQuery = "SHOW TABLES LIKE 'returned_books'";
-$tableExistsResult = $conn->query($tableExistsQuery);
-
-if ($tableExistsResult->num_rows === 0) {
-    // Table does not exist, create it
-    $createTableQuery = "CREATE TABLE returned_books (
-        LoanID INT NOT NULL,
-        BookID INT NOT NULL,
-        BorrowerID INT NOT NULL,
-        PRIMARY KEY (LoanID),
-        FOREIGN KEY (LoanID) REFERENCES loantransaction(LoanID),
-        FOREIGN KEY (BookID) REFERENCES book(BookID),
-        FOREIGN KEY (BorrowerID) REFERENCES borrower(BorrowerID)
-    )";
-    
-    if ($conn->query($createTableQuery)) {
-        echo "Table 'returned_books' created successfully.";
-    } else {
-        echo "Error creating table: " . $conn->error;
-    }
-}
-
-// Check if a book is being returned
+// Check if the return form was submitted
 if (isset($_POST['return'])) {
-    $loanID = $_POST['loan_id'];
+    // Retrieve form data and sanitize/validate if necessary
+    $user_id = $_POST['user_id'];
+    $book_id = $_POST['book_id'];
+    $return_date = $_POST['return_date'];
 
-    // Update the loantransaction table to set ReturnDate
-    $updateSql = "UPDATE loantransaction SET ReturnDate = NOW() WHERE LoanID = ?";
-    $updateStmt = $conn->prepare($updateSql);
-    $updateStmt->bind_param("i", $loanID);
-    $updateStmt->execute();
+    // Get the due date for the loan
+    $due_date_query = "SELECT DueDate FROM loantransaction WHERE BorrowerID = ? AND BookID = ?";
+    $due_date_stmt = $conn->prepare($due_date_query);
+    $due_date_stmt->bind_param("ii", $user_id, $book_id);
+    $due_date_stmt->execute();
+    $due_date_stmt->bind_result($due_date);
+    $due_date_stmt->fetch();
+    $due_date_stmt->close();
 
-    // Retrieve details of the returned book
-    $selectSql = "SELECT BookID, BorrowerID FROM loantransaction WHERE LoanID = ?";
-    $selectStmt = $conn->prepare($selectSql);
-    $selectStmt->bind_param("i", $loanID);
-    $selectStmt->execute();
-    $result = $selectStmt->get_result();
-    $row = $result->fetch_assoc();
-    $bookID = $row['BookID'];
-    $borrowerID = $row['BorrowerID'];
+    // Calculate fine for late return
+    $due_date_timestamp = strtotime($due_date);
+    $return_date_timestamp = strtotime($return_date);
+    $time_difference = $return_date_timestamp - $due_date_timestamp;
+    $days_late = floor($time_difference / (60 * 60 * 24));
+    $fine = max(0, $days_late * 2); // Charge Rs.2 for each day late
 
-    // Insert the returned book into the returned_books table
-    $insertSql = "INSERT INTO returned_books (LoanID, BookID, BorrowerID) VALUES (?, ?, ?)";
-    $insertStmt = $conn->prepare($insertSql);
-    $insertStmt->bind_param("iii", $loanID, $bookID, $borrowerID);
-    $insertStmt->execute();
+    // Prepare the SQL statement to update return date and fine
+    $sql = "UPDATE loantransaction SET ReturnDate = ?, Fine = ? WHERE BorrowerID = ? AND BookID = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("siii", $return_date, $fine, $user_id, $book_id);
 
-    $successMessage = "Book returned successfully.";
+    // Execute the SQL statement to update return date and fine
+    if ($stmt->execute()) {
+        $successMessage = "Return recorded successfully. Fine: Rs. " . $fine;
+    } else {
+        $errorMessage = "Error: Unable to record return. Please try again.";
+    }
+
+    $stmt->close();
 }
 
 $conn->close();
+
+header("Location: returnbook.php");
+exit();
 ?>

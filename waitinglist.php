@@ -31,38 +31,28 @@ if (isset($_POST['submit'])) {
 $conn->close();
 ?>
 
-<!DOCTYPE html>
-<html>
+<?php include 'header.php'; ?>
 
-    <head>
-        <title>Approve Loan - Engineering Library</title>
-        <link rel="shortcut icon" href="/assert/img/icosmall.png">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="assert/css/main.css">
-    </head>
-
-    <body>
-        <div class="form">
-            <h2>Approve Loan</h2>
-            <?php if (isset($successMessage)) { ?>
-            <p class="success"><?php echo $successMessage; ?></p>
-            <?php } elseif (isset($errorMessage)) { ?>
-            <p class="error"><?php echo $errorMessage; ?></p>
-            <?php } ?>
-            <form method="POST">
-                <div class="inputBox">
-                    <label for="loan_id">Loan ID</label>
-                    <input type="number" name="loan_id" id="loan_id" required>
-                </div>
-                <div class="inputBox">
-                    <label for="approved">Approved</label>
-                    <input type="checkbox" name="approved" id="approved">
-                </div>
-                <div class="inputBox">
-                    <input type="submit" name="submit" value="Approve">
-                </div>
-            </form>
+<div class="form">
+    <h2>Approve Loan</h2>
+    <?php if (isset($successMessage)) { ?>
+    <p class="success"><?php echo $successMessage; ?></p>
+    <?php } elseif (isset($errorMessage)) { ?>
+    <p class="error"><?php echo $errorMessage; ?></p>
+    <?php } ?>
+    <form method="POST">
+        <div class="inputBox">
+            <label for="loan_id">Loan ID</label>
+            <input type="number" name="loan_id" id="loan_id" required>
         </div>
-    </body>
+        <div class="inputBox">
+            <label for="approved">Approved</label>
+            <input type="checkbox" name="approved" id="approved">
+        </div>
+        <div class="inputBox">
+            <input type="submit" name="submit" value="Approve">
+        </div>
+    </form>
+</div>
 
-</html>
+<?php include 'footer.php'; ?>
