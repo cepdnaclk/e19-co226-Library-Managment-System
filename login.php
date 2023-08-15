@@ -68,8 +68,9 @@ if (isset($_POST['submit'])) {
         </div>
         <?php
             if ($errorMessage) {
-                echo "<p style='color: red;' class='formtext'>$errorMessage</p>";
+                echo "<p style='color: red;' class='formtext'>$errorMessage</p>";   
             }
+            
         ?>
         <div class="formtext">
             <p>Not Registered? <a href="register.php">Register</a></p>

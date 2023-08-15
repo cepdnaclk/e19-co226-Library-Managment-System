@@ -181,14 +181,14 @@ body{
 
 
 .footer {
-    position: absolute;
+    position: fixed;
     left: 0;
-    bottom: -200px;
+    bottom: 0;
     width: 100%;
     text-align: center;
-    background-color: rgba(236, 225, 225, 0.15); /* Setting the background to half-transparent */
+    background-color: rgba(24, 21, 17, 0.7);
     padding: 10px;
-    color: #040404;
+    color: aliceblue;
     font-weight: 700;
     font-size: 14px;
 }
