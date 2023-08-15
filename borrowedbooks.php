@@ -38,7 +38,7 @@
         echo "<p>Error: Unable to retrieve user information.</p>";
     } else {
         // Retrieve borrowed books for the user
-        $query = "SELECT book.ImgURL, book.Title, book.Discription
+        $query = "SELECT book.ImgURL, book.Title, book.Discription,book.BookID
                   FROM loantransaction
                   INNER JOIN book ON loantransaction.BookID = book.BookID
                   WHERE loantransaction.BorrowerID = ? AND loantransaction.ReturnDate IS NULL";
@@ -46,25 +46,29 @@
         $stmt->bind_param("i", $loggedInBorrowerID);
         $stmt->execute();
         $result = $stmt->get_result();
+        
 
+        
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
+                $bookID = $row['BookID'];
                 echo '<div class="card"> 
                         <div class="card-image"><img src="' . $row['ImgURL'] .'"></div>
                         <h2 class="movietitle">'.$row['Title'].'</h2>
                         <p class="moviepara">'.$row['Discription'].'</p>
-                        <a href = "" class="linke">READ MORE</a>  
-                    </div>';
-            }
-        } else {
-            echo "<p>No borrowed books found.</p>";
-        }
+                        <a href="book_details.php?BookID=' . $bookID . '" class="linke">READ MORE</a>
 
-        $stmt->close();
-    }
+</div>';
+}
+} else {
+echo "<p>No borrowed books found.</p>";
+}
 
-    $conn->close();
-    ?>
+$stmt->close();
+}
+
+$conn->close();
+?>
 
     </section>
 </div>

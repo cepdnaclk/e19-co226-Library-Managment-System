@@ -25,22 +25,25 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $allBooksSql = "SELECT ImgURL,Title,Discription FROM `book` LIMIT 10;";
+    $allBooksSql = "SELECT ImgURL,Title,Discription,BookID FROM `book` LIMIT 10;";
     $allBooksStmt = $conn->prepare($allBooksSql);
     $allBooksStmt->execute();
     $allBooksResult = $allBooksStmt->get_result();
 
     if ($allBooksResult->num_rows > 0) {
         while ($row = $allBooksResult->fetch_assoc()) {
+            $bookID = $row['BookID'];
             echo '<div class="card"> 
                     <div class="card-image"><img src="' . $row['ImgURL'] .'"></div>
                     <h2 class="movietitle">'.$row['Title'].'</h2>
                     <p class="moviepara">'.$row['Discription'].'</p>
-                    <a href = "" class="linke">READ MORE</a>  
-                </div>';
-        }
+                    <a href="book_details.php?BookID=' . $bookID . '" class="linke">READ MORE</a>
+
+
+    </div>';
+    }
     } else {
-        echo "<p>No results found.</p>";
+    echo "<p>No results found.</p>";
     }
 
     $allBooksStmt->close();
@@ -50,26 +53,28 @@
         <section class="containercards">
             <h2>Available Books</h2>
             <?php
-    $availableBooksSql = "SELECT ImgURL,Title,Discription FROM `book` WHERE Availability = 1 LIMIT 10;";
+    $availableBooksSql = "SELECT ImgURL,Title,Discription,BookID FROM `book` WHERE Availability = 1 LIMIT 10;";
     $availableBooksStmt = $conn->prepare($availableBooksSql);
     $availableBooksStmt->execute();
     $availableBooksResult = $availableBooksStmt->get_result();
 
     if ($availableBooksResult->num_rows > 0) {
         while ($row = $availableBooksResult->fetch_assoc()) {
+            $bookID = $row['BookID'];
             echo '<div class="card"> 
                     <div class="card-image"><img src="' . $row['ImgURL'] .'"></div>
                     <h2 class="movietitle">'.$row['Title'].'</h2>
                     <p class="moviepara">'.$row['Discription'].'</p>
-                    <a href = "" class="linke">READ MORE</a>  
-                </div>';
-        }
+                    <a href="book_details.php?BookID=' . $bookID . '" class="linke">READ MORE</a>
+
+    </div>';
+    }
     } else {
-        echo "<p>No available books found.</p>";
+    echo "<p>No available books found.</p>";
     }
 
     $availableBooksStmt->close();
-    
+
     $conn->close();
     ?>
 

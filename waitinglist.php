@@ -33,7 +33,7 @@ $conn->close();
 
 <?php include 'header.php'; ?>
 
-<div class="form">
+<div class="overview">
     <h2>Approve Loan</h2>
     <?php if (isset($successMessage)) { ?>
     <p class="success"><?php echo $successMessage; ?></p>
@@ -41,15 +41,15 @@ $conn->close();
     <p class="error"><?php echo $errorMessage; ?></p>
     <?php } ?>
     <form method="POST">
-        <div class="inputBox">
+        <div class="loan">
             <label for="loan_id">Loan ID</label>
             <input type="number" name="loan_id" id="loan_id" required>
         </div>
-        <div class="inputBox">
+        <div class="loan">
             <label for="approved">Approved</label>
             <input type="checkbox" name="approved" id="approved">
         </div>
-        <div class="inputBox">
+        <div class="loan-btn">
             <input type="submit" name="submit" value="Approve">
         </div>
     </form>

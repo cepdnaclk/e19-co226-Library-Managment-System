@@ -26,18 +26,19 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $availableBooksSql = "SELECT ImgURL, Title, Discription FROM `book` WHERE Availability = 1 LIMIT 10;";
+    $availableBooksSql = "SELECT ImgURL, Title, Discription,BookID FROM `book` WHERE Availability = 1 LIMIT 10;";
     $availableBooksStmt = $conn->prepare($availableBooksSql);
     $availableBooksStmt->execute();
     $availableBooksResult = $availableBooksStmt->get_result();
 
     if ($availableBooksResult->num_rows > 0) {
         while ($row = $availableBooksResult->fetch_assoc()) {
+            $bookID = $row['BookID'];
             echo '<div class="card"> 
                     <div class="card-image"><img src="' . $row['ImgURL'] .'"></div>
                     <h2 class="movietitle">'.$row['Title'].'</h2>
                     <p class="moviepara">'.$row['Discription'].'</p>
-                    <a href = "" class="linke">READ MORE</a>  
+                    <a href="book_details.php?BookID=' . $bookID . '" class="linke">READ MORE</a>
                 </div>';
         }
     } else {
