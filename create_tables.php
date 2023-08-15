@@ -73,6 +73,7 @@ $sql5 = "CREATE TABLE IF NOT EXISTS loantransaction (
     DueDate DATE NOT NULL,
     ReturnDate DATE,
     Fine DECIMAL(10, 2),
+    Approved BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (BookID) REFERENCES book (BookID),
     FOREIGN KEY (BorrowerID) REFERENCES borrower (BorrowerID)
 )";
@@ -110,23 +111,23 @@ if ($conn->query($sql5) === TRUE) {
 }
 
 // Check if the Approved column exists in the loantransaction table
-$checkSql = "SHOW COLUMNS FROM loantransaction LIKE 'Approved'";
-$result = $conn->query($checkSql);
+// $checkSql = "SHOW COLUMNS FROM loantransaction LIKE 'Approved'";
+// $result = $conn->query($checkSql);
 
-if ($result->num_rows === 0) {
-    // Column does not exist, add it using ALTER TABLE
-    $alterSql = "ALTER TABLE loantransaction
-                 ADD COLUMN Approved BOOLEAN DEFAULT FALSE";
+// if ($result->num_rows === 0) {
+//     // Column does not exist, add it using ALTER TABLE
+//     $alterSql = "ALTER TABLE loantransaction
+//                  ADD COLUMN Approved BOOLEAN DEFAULT FALSE";
 
-    // Execute the SQL statement to add the Approved column
-    if ($conn->query($alterSql) === TRUE) {
-        echo "Table 'loantransaction' altered successfully (Added Approved column)<br>";
-    } else {
-        echo "Error altering table 'loantransaction': " . $conn->error;
-    }
-} else {
-    echo "Column 'Approved' already exists in table 'loantransaction'. No alteration needed.<br>";
-}
+//     // Execute the SQL statement to add the Approved column
+//     if ($conn->query($alterSql) === TRUE) {
+//         echo "Table 'loantransaction' altered successfully (Added Approved column)<br>";
+//     } else {
+//         echo "Error altering table 'loantransaction': " . $conn->error;
+//     }
+// } else {
+//     echo "Column 'Approved' already exists in table 'loantransaction'. No alteration needed.<br>";
+// }
 
 // SQL queries to insert staff members into the members table
 $hashedPassword1 = password_hash('password1', PASSWORD_BCRYPT);
@@ -142,6 +143,7 @@ if ($conn->query($query1) && $conn->query($query2)) {
 } else {
     echo "Error: " . $conn->error;
 }
+
 $query_authors = "INSERT INTO author (AuthorID, FirstName, LastName, DateOfBirth, Nationality)
 VALUES
     (1, 'Stephenie', 'Meyer', '1973-12-24', 'American'),
@@ -157,16 +159,17 @@ if ($conn->query($query_authors) === TRUE) {
 } else {
     echo "Error in adding authors: " . $conn->error;
 }
+
 $query_books = "INSERT INTO book (BookID, Title,ImgURL,Discription, ISBN, Publisher, PublicationYear, Language, Genre, Availability, Author)
 VALUES
-    (1, 'Twilight saga','../img/twilight.jpg','Bella\'s vampire love, Edward, challenges norms. Their unique romance intertwines danger and devotion in this captivating supernatural tale.', '9780316015844', 'Little, Brown and Company', 2005, 'English', 'Fantasy', 1, 1),
-    (2, 'Harry Potter and the Half-Blood Prince','../img/harrypotter.jpeg','Voldemort\'s origins explored. Dumbledore guides Harry. Secrets deepen, alliances shift, setting stage for final confrontation.' ,'9780439784542', 'Scholastic', 2005, 'English', 'Fantasy', 1, 2),
-    (3, 'The Hobbit','../img/hobbit.jpeg',Bilbo joins dwarves\' quest for treasure, grows brave. Battles creatures, finds courage in epic adventure.', '9780547928227', 'Mariner Books', 1937, 'English', 'Fantasy', 1, 3),
-    (4, 'The Adventures of Huckleberry Finn', '../img/adventuers.jpeg','\"Huckleberry Finn\" follows Huck\'s escape with Jim, a runaway slave. Journey unfolds social commentary, friendship, and freedom.','9780486280615', 'Dover Publications', 1884, 'English', 'Adventure', 1, 4),
-    (5, 'Heroes of Olympus: The Lost Hero','../img/heros.jpeg','The Lost Hero,' demigods quest to rescue Hera, facing challenges, forging bonds, and uncovering ancient mysteries.', '9781423113393', 'Disney-Hyperion', 2010, 'English', 'Fantasy', 1, 5),
-    (6, 'The Hunger Games','../img/hungergames.jpeg','In a post-apocalyptic society, 'The Hunger Games\' annually pits teens against each other. Katniss Everdeen\'s sacrificial choice thrusts her into the deadly arena, challenging authority and kindling a rebellion against oppression.', '9780439023528', 'Scholastic', 2008, 'English', 'Dystopian', 1, 6),
-    (7, 'Percy Jackson and the Titan\'s Curse','../img/percyjackson.jpeg','Percy joins friends to rescue Artemis, battling Titans. Quest unfolds dangers, tests loyalties, reveals secrets in gripping mythological adventure.', '9781423101451', 'Disney-Hyperion', 2007, 'English', 'Fantasy', 1, 5),
-    (8, 'Mother','../img/mother.jpg','Maxim Gorky's \"Mother\" portrays working-class hardship and revolt in pre-revolution Russia. Protagonist Nilovna transforms from submissive wife to revolutionary, reflecting societal upheaval and individual empowerment.', '9780140183526', 'Penguin Classics', 1907, 'Russian', 'Drama', 1, 7)";
+    (1, 'Twilight saga','assert/img/bookprew/twilight.jpg','Bella\'s vampire love, Edward, challenges norms. Their unique romance intertwines danger and devotion in this captivating supernatural tale.', '9780316015844', 'Little, Brown and Company', 2005, 'English', 'Fantasy', 1, 1),
+    (2, 'Harry Potter and the Half-Blood Prince','assert/img/bookprew/harrypotter.jpeg','Voldemort\'s origins explored. Dumbledore guides Harry. Secrets deepen, alliances shift, setting stage for final confrontation.' ,'9780439784542', 'Scholastic', 2005, 'English', 'Fantasy', 1, 2),
+    (3, 'The Hobbit','assert/img/bookprew/hobbit.jpeg','Bilbo joins dwarves\' quest for treasure, grows brave. Battles creatures, finds courage in epic adventure.', '9780547928227', 'Mariner Books', 1937, 'English', 'Fantasy', 1, 3),
+    (4, 'The Adventures of Huckleberry Finn', 'assert/img/bookprew/adventuers.jpeg','\"Huckleberry Finn\" follows Huck\'s escape with Jim, a runaway slave. Journey unfolds social commentary, friendship, and freedom.','9780486280615', 'Dover Publications', 1884, 'English', 'Adventure', 1, 4),
+    (5, 'Heroes of Olympus: The Lost Hero','assert/img/bookprew/heros.jpeg','The Lost Hero,\' demigods quest to rescue Hera, facing challenges, forging bonds, and uncovering ancient mysteries.', '9781423113393', 'Disney-Hyperion', 2010, 'English', 'Fantasy', 1, 5),
+    (6, 'The Hunger Games','assert/img/bookprew/hungergames.jpeg','In a post-apocalyptic society, \'The Hunger Games\' annually pits teens against each other. Katniss Everdeen\'s sacrificial choice thrusts her into the deadly arena, challenging authority and kindling a rebellion against oppression.', '9780439023528', 'Scholastic', 2008, 'English', 'Dystopian', 1, 6),
+    (7, 'Percy Jackson and the Titan\'s Curse','assert/img/bookprew/percyjackson.jpeg','Percy joins friends to rescue Artemis, battling Titans. Quest unfolds dangers, tests loyalties, reveals secrets in gripping mythological adventure.', '9781423101451', 'Disney-Hyperion', 2007, 'English', 'Fantasy', 1, 5),
+    (8, 'Mother','assert/img/bookprew/mother.jpg','Maxim Gorky\'s \"Mother\" portrays working-class hardship and revolt in pre-revolution Russia. Protagonist Nilovna transforms from submissive wife to revolutionary, reflecting societal upheaval and individual empowerment.', '9780140183526', 'Penguin Classics', 1907, 'Russian', 'Drama', 1, 7)";
 if ($conn->query($query_books) === TRUE) {
     echo "Books added to database<br>";
 } else {
