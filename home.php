@@ -25,7 +25,7 @@
             <div class="text">
                 <h3>Want to Read</h3>
                 <p>Explore more Books...</p>
-                <a href="#">Read More</a>
+                <a href="available_books.php">Read More</a>
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@
             <div class="text">
                 <h3>Reviewed Books</h3>
                 <p>Your Feedbacks & Reviews...</p>
-                <a href="#">Read More</a>
+                <a href="reviewedbooks.php">Read More</a>
             </div>
         </div>
     </div>

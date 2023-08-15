@@ -1,14 +1,14 @@
 <?php
-    $pageTitle = "Borrowed Books - Engineering Library";
+    $pageTitle = "Returned Books - Engineering Library";
     include 'header.php';
 ?>
 
 <div class="overview">
 
-    <h1>Your Borrowed Books</h1>
+    <h1>Your Returned Books</h1>
     <hr>
     <section class="containercards">
-        <h2>Borrowed Books</h2>
+        <h2>Returned Books</h2>
         <?php
 
 
@@ -37,11 +37,11 @@
     if (!$loggedInBorrowerID) {
         echo "<p>Error: Unable to retrieve user information.</p>";
     } else {
-        // Retrieve borrowed books for the user
+        // Retrieve returned books for the user
         $query = "SELECT book.ImgURL, book.Title, book.Discription
                   FROM loantransaction
                   INNER JOIN book ON loantransaction.BookID = book.BookID
-                  WHERE loantransaction.BorrowerID = ? AND loantransaction.ReturnDate IS NULL";
+                  WHERE loantransaction.BorrowerID = ? AND loantransaction.ReturnDate IS NOT NULL";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $loggedInBorrowerID);
         $stmt->execute();
@@ -57,7 +57,7 @@
                     </div>';
             }
         } else {
-            echo "<p>No borrowed books found.</p>";
+            echo "<p>No returned books found.</p>";
         }
 
         $stmt->close();

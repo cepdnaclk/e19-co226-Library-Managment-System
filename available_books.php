@@ -1,34 +1,57 @@
 <?php
-require_once 'db.php';
+    $pageTitle = "Available Book- Engineering Library";
+    include 'header.php';
+?>
 
-// Establish a database connection
-$conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
+<div class="overview">
 
-// Check if the connection was successful
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    <h1>Find a Book</h1>
+    <hr>
+    <form action="search_books.php" method="GET" class="search-bar">
+        <!-- <label for="search_query">Search by Title or Author:</label> -->
+        <input type="text" name="search_query" id="search_query" placeholder="Search by Title or Author" required>
+        <input type="submit" name="submit" value="Search">
+    </form>
 
-// Prepare the SQL statement to retrieve available books
-$sql = "SELECT * FROM book WHERE Availability = 1";
-$result = $conn->query($sql);
+    <section class="containercards">
+        <h2>Available Books</h2>
+        <?php
+    require_once 'db.php';
 
-// Display available books in a table
-if ($result->num_rows > 0) {
-    echo "<h2>Available Books</h2>";
-    echo "<table border='1'>";
-    echo "<tr><th>Title</th><th>Author</th><th>ISBN</th></tr>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row['Title'] . "</td>";
-        echo "<td>" . $row['Author'] . "</td>";
-        echo "<td>" . $row['ISBN'] . "</td>";
-        echo "</tr>";
+    // Establish a database connection
+    $conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
+
+    // Check if the connection was successful
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-    echo "</table>";
-} else {
-    echo "<p>No available books found.</p>";
-}
 
-$conn->close();
+    $availableBooksSql = "SELECT ImgURL, Title, Discription FROM `book` WHERE Availability = 1 LIMIT 10;";
+    $availableBooksStmt = $conn->prepare($availableBooksSql);
+    $availableBooksStmt->execute();
+    $availableBooksResult = $availableBooksStmt->get_result();
+
+    if ($availableBooksResult->num_rows > 0) {
+        while ($row = $availableBooksResult->fetch_assoc()) {
+            echo '<div class="card"> 
+                    <div class="card-image"><img src="' . $row['ImgURL'] .'"></div>
+                    <h2 class="movietitle">'.$row['Title'].'</h2>
+                    <p class="moviepara">'.$row['Discription'].'</p>
+                    <a href = "" class="linke">READ MORE</a>  
+                </div>';
+        }
+    } else {
+        echo "<p>No available books found.</p>";
+    }
+
+    $availableBooksStmt->close();
+    
+    $conn->close();
+    ?>
+
+    </section>
+</div>
+
+<?php
+    include 'footer.php';
 ?>
