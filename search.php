@@ -12,7 +12,6 @@
         <input type="text" name="search_query" id="search_query" placeholder="Search by Title or Author" required>
         <input type="submit" name="submit" value="Search">
     </form>
-
     <section class="containercards">
 
         <div class="card"> 
@@ -71,8 +70,8 @@
             <a href="" class="linke" >READ MORE</a>             
         </div>
     </section>
-</div>
+</dib>
 
-<?php
+<!-- <?php
     include 'footer.php';
-?>
+?> -->

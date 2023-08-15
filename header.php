@@ -24,7 +24,6 @@
                 <a href="home.php">Home</a>
                 <a href="search.php">Books</a>
                 <a href="about.php">Contact</a>
-                <a href="view_account.php">Account Details</a>
 
                 <?php
                 // Start the session to work with session data
@@ -32,7 +31,7 @@
 
                 if (isset($_SESSION['user_id'])) {
                     // Display these links if the user is not logged in
-                    echo '<a href="#">Account Settings</a>';
+                    echo '<a href="view_account.php">Account Settings</a>';
                     echo '<a href="logout.php">Log-out</a>';
                 } else {
                     // Display this link if the user is logged in

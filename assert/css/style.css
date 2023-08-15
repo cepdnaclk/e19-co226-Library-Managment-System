@@ -283,8 +283,7 @@ hr{
 
 
 .search-bar {
-    width: 100%;
-    max-width: 700px;
+    width: 500px;
     background: rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
@@ -297,19 +296,27 @@ hr{
     background: transparent;
     flex: 1;
     border: 0;
-    padding: 7px 20px;
+    padding: 7px 2px;
     font-size: 15px;
     color: #cccc;
 }
+
 ::placeholder {
-    color: whitesmoke;
+    color: #cccc;
 }
 
-.search-bar button {
-    border: 0;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+
+::-ms-input-placeholder { 
+  color: #cccc;
+}
+
+:-ms-input-placeholder { 
+  color: #cccc;
+}
+
+
+.search-bar [type='text'] {
+    padding-left: 20px;
 }
 
 .loan{
@@ -492,9 +499,9 @@ hr{
   flex-wrap: wrap;
   margin-top: 5px; /* Add a margin to create space above the section */
   position: relative;
-  top: 13cm;
+  /* top: 13cm;
   width: 50cm;
-  right: 7cm;
+  right: 7cm; */
 
 }
 
