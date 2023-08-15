@@ -38,39 +38,11 @@ $conn->close();
         <link rel="shortcut icon" href="/assert/img/icosmall.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="assert/css/main.css">
-        <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
 
-        .form {
-            background-color: #ffffff;
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .form h2 {
-            margin-bottom: 20px;
-            text-align: center;
-            color: #333;
-        }
-
-        .account-details {
-            font-size: 16px;
-            color: #666;
-        }
-
-        .account-details p {
-            margin-bottom: 10px;
-        }
-        </style>
     </head>
 
     <body>
-        <div class="form">
+        <div class="overview">
             <h2>Account Details</h2>
             <div class="account-details">
                 <p><strong>First Name:</strong> <?php echo $loggedInFirstName; ?></p>

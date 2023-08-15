@@ -67,11 +67,14 @@ if (isset($_POST['submit'])) {
             <input type="submit" name="submit" value="Login">
         </div>
         <?php
-            if ($errorMessage) {
-                echo "<p style='color: red;' class='formtext'>$errorMessage</p>";   
-            }
-            
-        ?>
+if ($errorMessage) {
+    echo "<p style='color: red;' class='formtext'>$errorMessage</p>"; 
+    echo "<div class='formtext'>";
+    echo "<p>Forget Password? <a href='forgetpassword.php'>Reset Password</a></p>";
+    echo "</div>";
+}
+?>
+
         <div class="formtext">
             <p>Not Registered? <a href="register.php">Register</a></p>
         </div>
