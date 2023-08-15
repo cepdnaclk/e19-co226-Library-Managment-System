@@ -31,52 +31,49 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $role = 'borrower'; // Set the role as "borrower"
 
-    if ($password != $repassword){
-        $errorMessage = "Password must match";
-        // header("Location: register.php");
-        exit(); // Exit immediately after redirection
-    }
+    if ($password == $repassword){
 
-    // Hash the password before storing in the database
-    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+        // Hash the password before storing in the database
+        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-    // Prepare the SQL statement to insert username, password, and role into the members table
-    $sql = "INSERT INTO members (username, password, role) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $username, $hashedPassword, $role);
-
-    // Execute the SQL statement to insert username, password, and role into the members table
-    if ($stmt->execute()) {
-        // Registration successful for the members table, now insert the borrower profile data
-        $memberID = $stmt->insert_id;
-        $stmt->close();
-
-        // Prepare the SQL statement to insert borrower profile data into the borrowers table
-        $sql = "INSERT INTO borrower (BorrowerID, UserName, FirstName, LastName, Address, PhoneNumber, Email) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        // Prepare the SQL statement to insert username, password, and role into the members table
+        $sql = "INSERT INTO members (username, password, role) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        if (!$stmt) {
-            die("Error in preparing statement: " . $conn->error);
-        }
-            
-        $stmt->bind_param("issssss", $memberID, $username, $firstName, $lastName, $address, $phoneNumber, $email);
+        $stmt->bind_param("sss", $username, $hashedPassword, $role);
 
-        // Execute the SQL statement to insert borrower profile data into the borrowers table
+        // Execute the SQL statement to insert username, password, and role into the members table
         if ($stmt->execute()) {
-            // Registration successful for both tables
-            $successMessage = "Registration successful. BorrowerID: " . $memberID;
-            header("Location: login.php");
+            // Registration successful for the members table, now insert the borrower profile data
+            $memberID = $stmt->insert_id;
+            $stmt->close();
+
+            // Prepare the SQL statement to insert borrower profile data into the borrowers table
+            $sql = "INSERT INTO borrower (BorrowerID, UserName, FirstName, LastName, Address, PhoneNumber, Email) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            if (!$stmt) {
+                die("Error in preparing statement: " . $conn->error);
+            }
+                
+            $stmt->bind_param("issssss", $memberID, $username, $firstName, $lastName, $address, $phoneNumber, $email);
+
+            // Execute the SQL statement to insert borrower profile data into the borrowers table
+            if ($stmt->execute()) {
+                // Registration successful for both tables
+                $successMessage = "Registration successful. BorrowerID: " . $memberID;
+                header("Location: login.php");
+            } else {
+                // Registration failed for borrowers table
+                $errorMessage = "Error: Unable to register. Please try again.";
+            }
         } else {
-            // Registration failed for borrowers table
+            // Registration failed for members table
             $errorMessage = "Error: Unable to register. Please try again.";
         }
-    } else {
-        // Registration failed for members table
-        $errorMessage = "Error: Unable to register. Please try again.";
+        $stmt->close();
+        exit();
+    }else{
+        $errorMessage = "Password must match";
     }
-
-    $stmt->close();
-    // header("Location: login.php");
-    exit(); // Exit immediately after redirection
 }
 
 $conn->close();
@@ -86,7 +83,7 @@ $conn->close();
 
     <h1>Register as New Borrower</h1>
     <hr>
-    <form action="registration.php" method="POST" class="return add-book">
+    <form method="POST" class="return add-book">
         <div class="loan">
             <input type="text" name="username" id="username" placeholder="User Name" required>
         </div>
