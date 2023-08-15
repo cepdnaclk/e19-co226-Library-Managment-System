@@ -1,46 +1,63 @@
 <?php
-require_once 'db.php';
+    $pageTitle = "Search Book - Engineering Library";
+    include 'header.php';
+?>
 
-// Establish a database connection
-$conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
+<div class="overview">
 
-// Check if the connection was successful
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    <h1>Find a Book</h1>
+    <hr>
+    <form action="search_books.php" method="GET" class="search-bar">
+        <input type="text" name="search_query" id="search_query" placeholder="Search by Title or Author" required>
+        <input type="submit" name="submit" value="Search">
+    </form>
+    <section class="containercards">
+        <?php
 
-// Check if the search form was submitted
-if (isset($_GET['submit'])) {
+    require_once 'db.php';
+
+    // Establish a database connection
+    $conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
+
+    // Check if the connection was successful
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    
     // Retrieve and sanitize the search query
-    $searchQuery = $_GET['search_query'];
+    if (isset($_GET['submit'])) {
+        $searchQuery = $_GET['search_query'];
 
-    // Prepare the SQL statement to search by Title or Author
-    $sql = "SELECT * FROM book WHERE Title LIKE ? OR Author LIKE ?";
-    $stmt = $conn->prepare($sql);
-    $searchQuery = '%' . $searchQuery . '%'; // Add wildcards for partial matching
-    $stmt->bind_param("ss", $searchQuery, $searchQuery);
-    $stmt->execute();
-    $result = $stmt->get_result();
+        // Prepare the SQL statement to search by Title or Author
+        $sql = "SELECT ImgURL, Title, Discription FROM `book` WHERE Title LIKE ? OR Author LIKE ? LIMIT 10";
+        $stmt = $conn->prepare($sql);
+        $searchQuery = '%' . $searchQuery . '%'; // Add wildcards for partial matching
+        $stmt->bind_param("ss", $searchQuery, $searchQuery);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    // Display search results in a table
-    if ($result->num_rows > 0) {
-        echo "<h3>Search Results:</h3>";
-        echo "<table border='1'>";
-        echo "<tr><th>Title</th><th>Author</th><th>ISBN</th></tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row['Title'] . "</td>";
-            echo "<td>" . $row['Author'] . "</td>";
-            echo "<td>" . $row['ISBN'] . "</td>";
-            echo "</tr>";
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<div class="card"> 
+                        <div class="card-image"><img src="' . $row['ImgURL'] .'"></div>
+                        <h2 class="movietitle">'.$row['Title'].'</h2>
+                        <p class="moviepara">'.$row['Discription'].'</p>
+                        <a href = "" class="linke">READ MORE</a>  
+                    </div>';
+            }
+        } else {
+            echo "<p>No results found.</p>";
         }
-        echo "</table>";
-    } else {
-        echo "<p>No results found.</p>";
+
+        $stmt->close();
     }
 
-    $stmt->close();
-}
+    $conn->close();
+    ?>
 
-$conn->close();
+    </section>
+</div>
+
+<?php
+    include 'footer.php';
 ?>
