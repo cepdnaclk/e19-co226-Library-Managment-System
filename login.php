@@ -38,14 +38,17 @@ if (isset($_POST['submit'])) {
 
     if (password_verify($password, $hashedPassword)) {
         $_SESSION['user_id'] = $username;
-        // Login successful, redirect to welcome.php
-        header("Location: index.php");
-
+        // Redirect users based on their role
+        if ($role == "staff") {
+            header("Location: libraryhome.html");
+        } else {
+            header("Location: home.php");
+        }
         exit();
     } else {
         // Invalid username or password, display an error message or redirect back to the login page
         $errorMessage = "Incorrect username or password.";
-       // header("Location: login.php");
+        // header("Location: login.php");
     }
 }
 ?>

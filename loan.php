@@ -41,4 +41,8 @@ if (isset($_POST['submit'])) {
 }
 
 $conn->close();
+
+// Redirect to loanbook.php
+header("Location: loanbook.php");
+exit();
 ?>
