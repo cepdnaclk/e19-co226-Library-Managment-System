@@ -117,7 +117,7 @@ $conn->close();
             }
         ?>
         <div class="formtext">
-            <p>Already register:<a href="login.php">login</a></p>
+            <p>Already Registered? <a href="login.php">Login</a></p>
         </div>
     </form>
 </div>

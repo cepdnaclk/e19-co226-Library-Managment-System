@@ -72,7 +72,7 @@ if (isset($_POST['submit'])) {
             }
         ?>
         <div class="formtext">
-            <p>Not register:<a href="register.php">register</a></p>
+            <p>Not Registered? <a href="register.php">Register</a></p>
         </div>
     </form>
 </div>

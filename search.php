@@ -1,19 +1,20 @@
-<?php
+    <?php
     $pageTitle = "Search Book- Engineering Library";
     include 'header.php';
-?>
+    ?>
 
-<div class="overview">
+    <div class="overview">
 
-<h1>Find a Book</h1>
-<hr>
-<form action="search_books.php" method="GET" class="search-bar">
-    <!-- <label for="search_query">Search by Title or Author:</label> -->
-    <input type="text" name="search_query" id="search_query" placeholder="Search by Title or Author" required>
-    <input type="submit" name="submit" value="Search">
-</form>
-<section class="containercards">
-    <?php
+        <h1>Find a Book</h1>
+        <hr>
+        <form action="search_books.php" method="GET" class="search-bar">
+            <!-- <label for="search_query">Search by Title or Author:</label> -->
+            <input type="text" name="search_query" id="search_query" placeholder="Search by Title or Author" required>
+            <input type="submit" name="submit" value="Search">
+        </form>
+        <section class="containercards">
+            <h2>All Books</h2>
+            <?php
 
     require_once 'db.php';
 
@@ -24,13 +25,13 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "SELECT ImgURL,Title,Discription FROM `book` LIMIT 10;";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $allBooksSql = "SELECT ImgURL,Title,Discription FROM `book` LIMIT 10;";
+    $allBooksStmt = $conn->prepare($allBooksSql);
+    $allBooksStmt->execute();
+    $allBooksResult = $allBooksStmt->get_result();
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+    if ($allBooksResult->num_rows > 0) {
+        while ($row = $allBooksResult->fetch_assoc()) {
             echo '<div class="card"> 
                     <div class="card-image"><img src="' . $row['ImgURL'] .'"></div>
                     <h2 class="movietitle">'.$row['Title'].'</h2>
@@ -38,17 +39,43 @@
                     <a href = "" class="linke">READ MORE</a>  
                 </div>';
         }
-    }else {
+    } else {
         echo "<p>No results found.</p>";
     }
 
-    $stmt->close();
+    $allBooksStmt->close();
+    ?>
+
+        </section>
+        <section class="containercards">
+            <h2>Available Books</h2>
+            <?php
+    $availableBooksSql = "SELECT ImgURL,Title,Discription FROM `book` WHERE Availability = 1 LIMIT 10;";
+    $availableBooksStmt = $conn->prepare($availableBooksSql);
+    $availableBooksStmt->execute();
+    $availableBooksResult = $availableBooksStmt->get_result();
+
+    if ($availableBooksResult->num_rows > 0) {
+        while ($row = $availableBooksResult->fetch_assoc()) {
+            echo '<div class="card"> 
+                    <div class="card-image"><img src="' . $row['ImgURL'] .'"></div>
+                    <h2 class="movietitle">'.$row['Title'].'</h2>
+                    <p class="moviepara">'.$row['Discription'].'</p>
+                    <a href = "" class="linke">READ MORE</a>  
+                </div>';
+        }
+    } else {
+        echo "<p>No available books found.</p>";
+    }
+
+    $availableBooksStmt->close();
+    
     $conn->close();
     ?>
 
-</section>
-</div>
+        </section>
+    </div>
 
-<!-- <?php
+    <?php
     include 'footer.php';
-?> -->
+?>
