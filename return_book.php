@@ -46,16 +46,24 @@ if (isset($_POST['return'])) {
         $update_availability_stmt->execute();
         $update_availability_stmt->close();
 
-        $successMessage = "Return recorded successfully. Fine: Rs. " . $fine;
+        // Close the database connection
+        $conn->close();
+
+        // Display popup for successful return with fine
+        if ($fine > 0) {
+            echo '<script>
+                alert("Return recorded successfully. Fine: Rs. ' . $fine . '");
+                window.location.href = "returnbook.php";
+            </script>';
+            exit();
+        } else {
+            header("Location: returnbook.php");
+            exit();
+        }
     } else {
         $errorMessage = "Error: Unable to record return. Please try again.";
     }
 
     $update_loan_stmt->close();
 }
-
-$conn->close();
-
-header("Location: returnbook.php");
-exit();
 ?>

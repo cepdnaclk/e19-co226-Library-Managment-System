@@ -18,10 +18,11 @@ if (isset($_POST['submit'])) {
     $dueDate = $_POST['due_date'];
 
     // Prepare the SQL statement to insert loan transaction
-    $sql = "INSERT INTO loantransaction (BookID, BorrowerID, LoanDate, DueDate) 
-            VALUES (?, ?, ?, ?)";
+    $sql = "UPDATE loantransaction 
+            SET LoanDate = ?, DueDate = ?, Approved = 1 
+            WHERE BookID = ? AND BorrowerID = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iiss", $bookID, $borrowerID, $loanDate, $dueDate);
+    $stmt->bind_param("ssii", $loanDate, $dueDate, $bookID, $borrowerID);
 
     // Execute the SQL statement to insert loan transaction
     if ($stmt->execute()) {
