@@ -518,12 +518,19 @@ hr{
     font: bolder;
    
 }
+
 .card-image{
-     height: 290px;
-     margin-bottom: 15px;
-     background-size: cover;
-     border-radius: 15px 15px 0 0;
+  height: 290px;
+  padding-top: 10px;
+  background-size: cover;
+  border-radius: 15px 15px 0 0;
 }
+
+.card-image img{
+  width: 90%;
+  border-radius: 15px 15px 0 0;
+}
+
 .movietitle{
   text-align: center;
   color: #f6f3f3;
