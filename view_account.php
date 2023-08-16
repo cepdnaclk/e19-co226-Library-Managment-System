@@ -31,12 +31,12 @@ $stmt->bind_result($loggedInFirstName, $loggedInLastName, $loggedInAddress, $log
 echo '<div class="overview">
         <h2>Account Details</h2>
         <div class="account-details">
-            <p><strong>User Name: </strong>'. $loggedInUserID . '</p>
-            <p><strong>First Name: </strong>'. $loggedInFirstName. '</p>
-            <p><strong>Last Name: </strong>'. $loggedInLastName . '</p>
-            <p><strong>Address: </strong>'. $loggedInAddress . '</p>
-            <p><strong>Phone Number: </strong>'. $loggedInPhoneNumber . '</p>
-            <p><strong>Email: </strong>' . $loggedInEmail . '</p>
+            <p><strong>User Name    : </strong>'. $loggedInUserID . '</p>
+            <p><strong>First Name   : </strong>'. $loggedInFirstName. '</p>
+            <p><strong>Last Name    : </strong>'. $loggedInLastName . '</p>
+            <p><strong>Address      : </strong>'. $loggedInAddress . '</p>
+            <p><strong>Phone Number : </strong>'. $loggedInPhoneNumber . '</p>
+            <p><strong>Email        : </strong>' . $loggedInEmail . '</p>
         </div>
     </div>';
 $stmt->fetch();
