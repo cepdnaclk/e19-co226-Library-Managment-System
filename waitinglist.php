@@ -11,13 +11,15 @@ if ($conn->connect_error) {
 
 // Check if the form was submitted
 if (isset($_POST['submit'])) {
-    $loanID = $_POST['loan_id'];
-    $approved = isset($_POST['approved']) ? 1 : 0;
+    $bookID = $_POST['book_id'];
+    $borrowerID = $_POST['borrower_id'];
+    
 
     // Update the "approved" attribute in the loantransaction table
-    $updateSql = "UPDATE loantransaction SET Approved = ? WHERE LoanID = ?";
+    $updateSql = "INSERT INTO loantransaction (BookID, BorrowerID, LoanDate, DueDate, Approved) 
+            VALUES (?, ?, NULL, NULL, 0)";
     $stmt = $conn->prepare($updateSql);
-    $stmt->bind_param("ii", $approved, $loanID);
+    $stmt->bind_param("ii", $bookID, $borrowerID);
 
     if ($stmt->execute()) {
         $successMessage = "Loan approval updated successfully.";
@@ -40,7 +42,7 @@ $conn->close();
 
     <h1>Record Wating List</h1>
     <hr>
-    <form action="loan.php" method="POST" class="return">
+    <form method="POST" class="return">
         <div class="loan">
             <input type="text" name="book_id" placeholder="Book ID" required>
         </div>
