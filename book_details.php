@@ -18,6 +18,27 @@ include 'header.php';
         die("Connection failed: " . $conn->connect_error);
     }
 
+    // Check if the form was submitted
+    if (isset($_POST['submit'])) {
+        $bookID = $_POST['BookID'];
+        $borrowerID = $_SESSION['user_id'];
+        
+
+        // Update the "approved" attribute in the loantransaction table
+        $updateSql = "INSERT INTO loantransaction (BookID, BorrowerID, LoanDate, DueDate, Approved) 
+                VALUES (?, ?, NULL, NULL, 0)";
+        $stmt = $conn->prepare($updateSql);
+        $stmt->bind_param("ii", $bookID, $borrowerID);
+
+        if ($stmt->execute()) {
+            $successMessage = "Loan approval updated successfully.";
+        } else {
+            $errorMessage = "Error: Unable to update loan approval. Please try again.";
+        }
+
+        $stmt->close();
+    }
+
     if (isset($_GET['BookID'])) {
         $bookID = $_GET['BookID'];
 
@@ -34,15 +55,19 @@ include 'header.php';
             echo '<div class="book-details">
                     <img src="' . $row['ImgURL'] . '" alt="' . $row['Title'] . '">
                     <h2 class="book-title">' . $row['Title'] . '</h2>
-                    <p><strong>Book ID:</strong> ' . $row['BookID'] . '</p>
                     <p class="book-description">' . $row['Discription'] . '</p>
+                    <p><strong>Book ID:</strong> ' . $row['BookID'] . '</p>
                     <p><strong>ISBN:</strong> ' . $row['ISBN'] . '</p>
                     <p><strong>Publisher:</strong> ' . $row['Publisher'] . '</p>
                     <p><strong>Publication Year:</strong> ' . $row['PublicationYear'] . '</p>
                     <p><strong>Language:</strong> ' . $row['Language'] . '</p>
                     <p><strong>Genre:</strong> ' . $row['Genre'] . '</p>
                     <p><strong>Author:</strong> ' . $row['FirstName'] . ' ' . $row['LastName'] . '</p>
-                    <!-- Display other book details here -->
+                    <form method="post">
+                        <input type="hidden" name="BookID" value="' . $row['BookID'] . '">
+                        <button type="submit" name="add_to_waiting_list">Add to Waiting List</button>
+                    </form>
+                    
                 </div>';
         } else {
             echo "<p>No book details found.</p>";
