@@ -34,6 +34,7 @@ include 'header.php';
             echo '<div class="book-details">
                     <img src="' . $row['ImgURL'] . '" alt="' . $row['Title'] . '">
                     <h2 class="book-title">' . $row['Title'] . '</h2>
+                    <p><strong>Book ID:</strong> ' . $row['BookID'] . '</p>
                     <p class="book-description">' . $row['Discription'] . '</p>
                     <p><strong>ISBN:</strong> ' . $row['ISBN'] . '</p>
                     <p><strong>Publisher:</strong> ' . $row['Publisher'] . '</p>
