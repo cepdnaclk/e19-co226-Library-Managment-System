@@ -2,6 +2,6 @@
 // Database connection credentials
 $host = 'sql.freedb.tech';
 $dbUsername = 'freedb_CO226_lms';
-$dbPassword = 'NAWjsk%69WkpX*9';
+$dbPassword = 'jGaR!7FjqvWjYxG';
 $dbName = 'freedb_CO226_lms';
 ?>
