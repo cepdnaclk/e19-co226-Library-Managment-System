@@ -82,7 +82,7 @@ include 'header.php';
                     <p><strong>Author :</strong> ' . $row['FirstName'] . ' ' . $row['LastName'] . '</p>
                     <form method="post">
                         <input type="hidden" name="BookID" value="' . $row['BookID'] . '">
-                        <button type="submit" name="add_to_waiting_list">Remove from Waiting List</button>
+                        <button type="submit" name="add_to_waiting_list" style="background-color: red;">Remove from Waiting List</button>
                     </form>
                 </div>';
         } else {
