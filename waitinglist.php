@@ -31,28 +31,28 @@ if (isset($_POST['submit'])) {
 $conn->close();
 ?>
 
-<?php include 'header.php'; ?>
+<?php
+    $pageTitle = "Add Wating List - Engineering Library";
+    include 'header.php';
+?>
 
 <div class="overview">
-    <h2>Approve Loan</h2>
-    <?php if (isset($successMessage)) { ?>
-    <p class="success"><?php echo $successMessage; ?></p>
-    <?php } elseif (isset($errorMessage)) { ?>
-    <p class="error"><?php echo $errorMessage; ?></p>
-    <?php } ?>
-    <form method="POST">
+
+    <h1>Record Wating List</h1>
+    <hr>
+    <form action="loan.php" method="POST" class="return">
         <div class="loan">
-            <label for="loan_id">Loan ID</label>
-            <input type="number" name="loan_id" id="loan_id" required>
+            <input type="text" name="book_id" placeholder="Book ID" required>
         </div>
         <div class="loan">
-            <label for="approved">Approved</label>
-            <input type="checkbox" name="approved" id="approved">
+            <input type="text" name="borrower_id" placeholder="User ID" required>
         </div>
         <div class="loan-btn">
-            <input type="submit" name="submit" value="Approve">
+            <input type="submit" name="submit" value="Record Loan">
         </div>
     </form>
 </div>
 
-<?php include 'footer.php'; ?>
+<?php
+    include 'footer.php';
+?>
