@@ -584,3 +584,11 @@ hr{
    transition: all 1s ease;
 
 }
+
+.account-details p strong {
+  display: inline-block;
+  width: 150px; 
+  text-align: right;
+  margin-right: 10px;
+}
+
