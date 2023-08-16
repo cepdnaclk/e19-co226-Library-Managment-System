@@ -21,7 +21,7 @@
             </a>
 
             <nav class="navbar">          
-                <a href="home.php">Home</a>
+                <a href="index.php">Home</a>
                 <a href="search.php">Books</a>
                 <a href="about.php">Contact</a>
 

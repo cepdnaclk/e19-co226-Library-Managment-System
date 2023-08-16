@@ -38,12 +38,14 @@ if (isset($_POST['submit'])) {
 
     if (password_verify($password, $hashedPassword)) {
         $_SESSION['user_id'] = $username;
+        $_SESSION['roleid'] = $role;
         // Redirect users based on their role
-        if ($role == "staff") {
-            header("Location: libraryhome.html");
-        } else {
-            header("Location: home.php");
-        }
+        // if ($role == "staff") {
+        //     header("Location: libraryhome.html");
+        // } else {
+        //     header("Location: home.php");
+        // }
+        header("Location: index.php");
         exit();
     } else {
         // Invalid username or password, display an error message or redirect back to the login page

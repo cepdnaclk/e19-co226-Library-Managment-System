@@ -29,29 +29,18 @@ $stmt->close();
 $conn->close();
 ?>
 
-<!-- Display the account details -->
-<!DOCTYPE html>
-<html>
 
-    <head>
-        <title>View Account - Library System</title>
-        <link rel="shortcut icon" href="/assert/img/icosmall.png">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="assert/css/main.css">
+<div class="overview">
+    <h2>Account Details</h2>
+    <div class="account-details">
+        <p><strong>First Name:</strong> <?php echo $loggedInFirstName; ?></p>
+        <p><strong>Last Name:</strong> <?php echo $loggedInLastName; ?></p>
+        <p><strong>Address:</strong> <?php echo $loggedInAddress; ?></p>
+        <p><strong>Phone Number:</strong> <?php echo $loggedInPhoneNumber; ?></p>
+        <p><strong>Email:</strong> <?php echo $loggedInEmail; ?></p>
+    </div>
+</div>
 
-    </head>
-
-    <body>
-        <div class="overview">
-            <h2>Account Details</h2>
-            <div class="account-details">
-                <p><strong>First Name:</strong> <?php echo $loggedInFirstName; ?></p>
-                <p><strong>Last Name:</strong> <?php echo $loggedInLastName; ?></p>
-                <p><strong>Address:</strong> <?php echo $loggedInAddress; ?></p>
-                <p><strong>Phone Number:</strong> <?php echo $loggedInPhoneNumber; ?></p>
-                <p><strong>Email:</strong> <?php echo $loggedInEmail; ?></p>
-            </div>
-        </div>
-    </body>
-
-</html>
+<?php
+include 'footer.php';
+?>
