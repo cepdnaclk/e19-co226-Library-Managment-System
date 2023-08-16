@@ -19,24 +19,35 @@ include 'header.php';
     }
 
     // Check if the form was submitted
-    if (isset($_POST['submit'])) {
+    if (isset($_POST['add_to_waiting_list'])) {
         $bookID = $_POST['BookID'];
-        $borrowerID = $_SESSION['user_id'];
-        
+        $username = $_SESSION['user_id'];
 
-        // Update the "approved" attribute in the loantransaction table
-        $updateSql = "INSERT INTO loantransaction (BookID, BorrowerID, LoanDate, DueDate, Approved) 
-                VALUES (?, ?, NULL, NULL, 0)";
-        $stmt = $conn->prepare($updateSql);
-        $stmt->bind_param("ii", $bookID, $borrowerID);
+        // Retrieve BorrowerID based on username
+        $borrowerIDQuery = "SELECT BorrowerID FROM borrower WHERE UserName = ?";
+        $borrowerIDStmt = $conn->prepare($borrowerIDQuery);
+        $borrowerIDStmt->bind_param("s", $username);
+        $borrowerIDStmt->execute();
+        $borrowerIDStmt->bind_result($borrowerID);
+        $borrowerIDStmt->fetch();
+        $borrowerIDStmt->close();
 
-        if ($stmt->execute()) {
-            $successMessage = "Loan approval updated successfully.";
+        if ($borrowerID) {
+            // Insert the book into the waiting list
+            $insertWaitingListSql = "INSERT INTO loantransaction (BookID, BorrowerID) VALUES (?, ?)";
+            $insertWaitingListStmt = $conn->prepare($insertWaitingListSql);
+            $insertWaitingListStmt->bind_param("ii", $bookID, $borrowerID);
+
+            if ($insertWaitingListStmt->execute()) {
+                $successMessage = "Book added to waiting list successfully.";
+            } else {
+                $errorMessage = "Error: Unable to add book to waiting list. Please try again.";
+            }
+
+            $insertWaitingListStmt->close();
         } else {
-            $errorMessage = "Error: Unable to update loan approval. Please try again.";
+            $errorMessage = "Error: Borrower not found for the provided username.";
         }
-
-        $stmt->close();
     }
 
     if (isset($_GET['BookID'])) {
@@ -67,7 +78,6 @@ include 'header.php';
                         <input type="hidden" name="BookID" value="' . $row['BookID'] . '">
                         <button type="submit" name="add_to_waiting_list">Add to Waiting List</button>
                     </form>
-                    
                 </div>';
         } else {
             echo "<p>No book details found.</p>";
