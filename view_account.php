@@ -33,6 +33,7 @@ $stmt->bind_result($loggedInBorrowerID, $loggedInFirstName, $loggedInLastName, $
 $stmt->fetch();
 echo '<div class="overview">
         <h2>Account Details</h2>
+        <hr>
         <div class="account-details">
             <p><strong>User Name    : </strong>'. $loggedInUserID . '</p>
             <p><strong>First Name   : </strong>'. $loggedInFirstName. '</p>
