@@ -40,6 +40,12 @@ include 'header.php';
 
             if ($insertWaitingListStmt->execute()) {
                 $successMessage = "Book added to waiting list successfully.";
+                echo '<script>
+                        alert("Book added to waiting list successfully.");
+                        window.location.href = "book_details.php";
+                    </script>';
+                header("Location: available_books.php");
+                exit();
             } else {
                 $errorMessage = "Error: Unable to add book to waiting list. Please try again.";
             }

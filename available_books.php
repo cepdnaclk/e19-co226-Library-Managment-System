@@ -1,14 +1,14 @@
 <?php
-    $pageTitle = "Returned Books - Engineering Library";
+    $pageTitle = "Wating List - Engineering Library";
     include 'header.php';
 ?>
 
 <div class="overview">
 
-    <h1>Your Returned Books</h1>
+    <h1>Your Wating List</h1>
     <hr>
     <section class="containercards">
-        <h2>Returned Books</h2>
+        <h2>Wating List</h2>
         <?php
 
 
