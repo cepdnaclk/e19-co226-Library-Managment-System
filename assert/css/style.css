@@ -585,6 +585,14 @@ hr{
 
 }
 
+.book-details p strong {
+  display: inline-block;
+  width: 150px; 
+  text-align: right;
+  margin-right: 10px;
+}
+
+
 .account-details p strong {
   display: inline-block;
   width: 150px; 

@@ -55,14 +55,14 @@ include 'header.php';
             echo '<div class="book-details">
                     <img src="' . $row['ImgURL'] . '" alt="' . $row['Title'] . '">
                     <h2 class="book-title">' . $row['Title'] . '</h2>
-                    <p class="book-description">' . $row['Discription'] . '</p>
-                    <p><strong>Book ID:</strong> ' . $row['BookID'] . '</p>
-                    <p><strong>ISBN:</strong> ' . $row['ISBN'] . '</p>
-                    <p><strong>Publisher:</strong> ' . $row['Publisher'] . '</p>
-                    <p><strong>Publication Year:</strong> ' . $row['PublicationYear'] . '</p>
-                    <p><strong>Language:</strong> ' . $row['Language'] . '</p>
-                    <p><strong>Genre:</strong> ' . $row['Genre'] . '</p>
-                    <p><strong>Author:</strong> ' . $row['FirstName'] . ' ' . $row['LastName'] . '</p>
+                    <p><strong>Discription :</strong>' . $row['Discription'] . '</p>
+                    <p><strong>Book ID :</strong> ' . $row['BookID'] . '</p>
+                    <p><strong>ISBN :</strong> ' . $row['ISBN'] . '</p>
+                    <p><strong>Publisher :</strong> ' . $row['Publisher'] . '</p>
+                    <p><strong>Publication Year :</strong> ' . $row['PublicationYear'] . '</p>
+                    <p><strong>Language :</strong> ' . $row['Language'] . '</p>
+                    <p><strong>Genre :</strong> ' . $row['Genre'] . '</p>
+                    <p><strong>Author :</strong> ' . $row['FirstName'] . ' ' . $row['LastName'] . '</p>
                     <form method="post">
                         <input type="hidden" name="BookID" value="' . $row['BookID'] . '">
                         <button type="submit" name="add_to_waiting_list">Add to Waiting List</button>
