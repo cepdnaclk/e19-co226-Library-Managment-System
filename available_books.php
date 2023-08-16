@@ -54,7 +54,7 @@
                         <div class="card-image"><img src="' . $row['ImgURL'] .'"></div>
                         <h2 class="movietitle">'.$row['Title'].'</h2>
                         <p class="moviepara">'.$row['Discription'].'</p>
-                        <a href="book_details.php?BookID=' . $bookID . '" class="linke">READ MORE</a>
+                        <a href="book_detailsrm.php?BookID=' . $bookID . '" class="linke">READ MORE</a>
 
 </div>';
 }
