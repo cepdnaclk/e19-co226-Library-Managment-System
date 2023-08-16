@@ -18,28 +18,32 @@ if ($conn->connect_error) {
 $loggedInUserID = $_SESSION['user_id'];
 
 // Retrieve user details for displaying in the form
-$query = "SELECT FirstName, LastName, Address, PhoneNumber, Email FROM borrower WHERE UserName = ?";
+$query = "SELECT FirstName, LastName, Address, PhoneNumber, Email FROM borrower WHERE UserName = 'dasuntheekshana'";
 $stmt = $conn->prepare($query);
-$stmt->bind_param("i", $loggedInUserID);
-$stmt->execute();
+if (!$stmt) {
+    die("Error in preparing statement: " . $conn->error);
+}
+// $stmt->bind_param("s", $loggedInUserID);
+if (!$stmt->execute()) {
+    die("Error executing query: " . $stmt->error);
+}
 $stmt->bind_result($loggedInFirstName, $loggedInLastName, $loggedInAddress, $loggedInPhoneNumber, $loggedInEmail);
+echo '<div class="overview">
+        <h2>Account Details</h2>
+        <div class="account-details">
+            <p><strong>User Name: </strong>'. $loggedInUserID . '</p>
+            <p><strong>First Name: </strong>'. $loggedInFirstName. '</p>
+            <p><strong>Last Name: </strong>'. $loggedInLastName . '</p>
+            <p><strong>Address: </strong>'. $loggedInAddress . '</p>
+            <p><strong>Phone Number: </strong>'. $loggedInPhoneNumber . '</p>
+            <p><strong>Email: </strong>' . $loggedInEmail . '</p>
+        </div>
+    </div>';
 $stmt->fetch();
 $stmt->close();
 
 $conn->close();
 ?>
-
-
-<div class="overview">
-    <h2>Account Details</h2>
-    <div class="account-details">
-        <p><strong>First Name:</strong> <?php echo $loggedInFirstName; ?></p>
-        <p><strong>Last Name:</strong> <?php echo $loggedInLastName; ?></p>
-        <p><strong>Address:</strong> <?php echo $loggedInAddress; ?></p>
-        <p><strong>Phone Number:</strong> <?php echo $loggedInPhoneNumber; ?></p>
-        <p><strong>Email:</strong> <?php echo $loggedInEmail; ?></p>
-    </div>
-</div>
 
 <?php
 include 'footer.php';
