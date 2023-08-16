@@ -1,13 +1,13 @@
 <?php
-    $pageTitle = "Account Details - Engineering Library";
-    include 'header.php';
-?><?php
+$pageTitle = "Account Details - Engineering Library";
+include 'header.php';
+?>
 
-
+<?php
 require_once 'db.php';
 
 // Establish a database connection
-$conn = new mysqli($host, $dbUsername, $dbPassword, $dbName); // Include $dbName here
+$conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
 
 // Check if the connection was successful
 if ($conn->connect_error) {
@@ -18,16 +18,19 @@ if ($conn->connect_error) {
 $loggedInUserID = $_SESSION['user_id'];
 
 // Retrieve user details for displaying in the form
-$query = "SELECT FirstName, LastName, Address, PhoneNumber, Email FROM borrower WHERE UserName = 'dasuntheekshana'";
+$query = "SELECT BorrowerID, FirstName, LastName, Address, PhoneNumber, Email FROM borrower WHERE UserName = ?";
 $stmt = $conn->prepare($query);
 if (!$stmt) {
     die("Error in preparing statement: " . $conn->error);
 }
-// $stmt->bind_param("s", $loggedInUserID);
+$stmt->bind_param("s", $loggedInUserID);
 if (!$stmt->execute()) {
     die("Error executing query: " . $stmt->error);
 }
-$stmt->bind_result($loggedInFirstName, $loggedInLastName, $loggedInAddress, $loggedInPhoneNumber, $loggedInEmail);
+$stmt->bind_result($loggedInBorrowerID, $loggedInFirstName, $loggedInLastName, $loggedInAddress, $loggedInPhoneNumber, $loggedInEmail);
+
+// Fetch and display user details
+$stmt->fetch();
 echo '<div class="overview">
         <h2>Account Details</h2>
         <div class="account-details">
@@ -39,7 +42,6 @@ echo '<div class="overview">
             <p><strong>Email        : </strong>' . $loggedInEmail . '</p>
         </div>
     </div>';
-$stmt->fetch();
 $stmt->close();
 
 $conn->close();
