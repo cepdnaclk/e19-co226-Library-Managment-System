@@ -41,7 +41,7 @@
         $query = "SELECT book.ImgURL, book.Title, book.Discription,book.BookID
                   FROM loantransaction
                   INNER JOIN book ON loantransaction.BookID = book.BookID
-                  WHERE loantransaction.BorrowerID = ? AND loantransaction.ReturnDate IS NULL";
+                  WHERE loantransaction.BorrowerID = ? AND loantransaction.ReturnDate IS NULL and loantransaction.LoanDate IS NOT NULL";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $loggedInBorrowerID);
         $stmt->execute();
