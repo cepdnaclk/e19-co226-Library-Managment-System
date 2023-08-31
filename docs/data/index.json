@@ -1,0 +1,26 @@
+{
+    "team": [
+        {
+            "name": "Abeysinghe A.M.H.P.",
+            "email": "e19003@eng.pdn.ac.lk",
+            "eNumber": "E/19/003"
+        },
+        {
+            "name": "Abeysinghe R.B.",
+            "email": "e19004@eng.pdn.ac.lk",
+            "eNumber": "E/19/004"
+        },
+         {
+            "name": "Wijayawardana K.G.D.T.",
+            "email": "e19443@eng.pdn.ac.lk",
+            "eNumber": "E/19/443"
+        }
+    ],
+    "supervisors": [
+        {
+            "name": "Dr. Manjula Sandirigama",
+            "email": "m_sandirigama@ce.pdn.ac.lk"
+        }
+    ],
+  "tags": [ "CO226", "Library Managment System" ]
+}
